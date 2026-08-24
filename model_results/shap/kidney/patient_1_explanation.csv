@@ -1,0 +1,22 @@
+feature,readable_feature,model_input_value,shap_value,absolute_shap,direction
+numerical__Uric_Acid,Uric Acid,-1.4736201148692456,1.4228736,1.4228736,Supports prediction
+numerical__Creatinine,Creatinine,-0.4719259090688795,0.9976447,0.9976447,Supports prediction
+numerical__Blood_Urea,Blood Urea,-0.3173211656284948,0.98721254,0.98721254,Supports prediction
+numerical__Potassium,Potassium,-0.6225359716706206,0.46942544,0.46942544,Supports prediction
+numerical__eGFR,eGFR,-0.2753241581418943,0.18310218,0.18310218,Supports prediction
+numerical__Fatigue,Fatigue,0.9920317455237933,-0.15440974,0.15440974,Opposes prediction
+numerical__Calcium,Calcium,-0.6327384164539376,0.11369045,0.11369045,Supports prediction
+numerical__Sodium,Sodium,-1.0532017932372806,-0.10183197,0.10183197,Opposes prediction
+numerical__Age,Age,-0.0851488515604467,-0.07573253,0.07573253,Opposes prediction
+numerical__Appetite_Loss,Appetite Loss,0.9920317455237933,0.056931213,0.056931213,Supports prediction
+categorical__Urine_Protein_Trace,Urine Protein Trace,0.0,-0.026818553,0.026818553,Opposes prediction
+numerical__Hypertension,Hypertension,1.0176558404830247,-0.025577607,0.025577607,Opposes prediction
+categorical__Urine_Protein_+3,Urine Protein +3,0.0,0.02359946,0.02359946,Supports prediction
+categorical__Gender_Female,Gender Female,1.0,0.012332948,0.012332948,Supports prediction
+numerical__Diabetes,Diabetes,-1.0408329997330663,0.007768341,0.007768341,Supports prediction
+categorical__Urine_Protein_+1,Urine Protein +1,1.0,-0.0043054945,0.0043054945,Opposes prediction
+categorical__Urine_Protein_Negative,Urine Protein Negative,0.0,-0.002621184,0.002621184,Opposes prediction
+numerical__Swelling,Swelling,0.9960079680956174,-0.0022923627,0.0022923627,Opposes prediction
+numerical__Hemoglobin,Hemoglobin,0.1490581710848204,0.0008796106,0.0008796106,Supports prediction
+categorical__Urine_Protein_+2,Urine Protein +2,0.0,0.0006333374,0.0006333374,Supports prediction
+categorical__Gender_Male,Gender Male,0.0,-0.00020102324,0.00020102324,Opposes prediction

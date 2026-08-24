@@ -1,0 +1,20 @@
+feature,readable_feature,mean_abs_shap
+numerical__Dizziness,Dizziness,0.12102801678994456
+numerical__Chest_Pain,Chest Pain,0.08070998392885566
+numerical__Breathlessness,Breathlessness,0.07490623946739194
+categorical__ECG_Abnormal,ECG Abnormal,0.046168365181969526
+numerical__LDL,LDL,0.041971190766588465
+categorical__ECG_Normal,ECG Normal,0.04128654889029312
+numerical__Troponin,Troponin,0.0313956159120803
+numerical__Cholesterol,Cholesterol,0.0023950352806418455
+numerical__Age,Age,0.0017535578973479067
+numerical__Triglycerides,Triglycerides,0.0015827490427242617
+numerical__Heart_Rate,Heart Rate,0.0012784560698862134
+numerical__HDL,HDL,0.001266276990497465
+numerical__Systolic_BP,Systolic BP,0.0012261019852737567
+numerical__Diastolic_BP,Diastolic BP,0.0011723039121939993
+categorical__Gender_Female,Gender Female,0.0006700488917668801
+categorical__Gender_Male,Gender Male,0.0005975081936801177
+numerical__Obesity,Obesity,0.00047021731778953014
+numerical__Family_History,Family History,0.00046530377843118304
+numerical__Smoking,Smoking,0.0003762001695418785

@@ -1,0 +1,22 @@
+feature,readable_feature,model_input_value,shap_value,absolute_shap,direction
+numerical__Creatinine,Creatinine,0.5728622849277104,0.16971529570671082,0.16971529570671082,Supports prediction
+numerical__eGFR,eGFR,-0.1518913998510026,0.12808750291024762,0.12808750291024762,Supports prediction
+numerical__Uric_Acid,Uric Acid,-1.0594290706391454,0.03862876749286574,0.03862876749286574,Supports prediction
+numerical__Blood_Urea,Blood Urea,-0.9639707237295888,-0.03093321990247006,0.03093321990247006,Opposes prediction
+categorical__Gender_Female,Gender Female,0.0,-0.0072737644949422645,0.0072737644949422645,Opposes prediction
+numerical__Fatigue,Fatigue,-1.0015011266894014,0.005424242293405458,0.005424242293405458,Supports prediction
+numerical__Sodium,Sodium,-0.15640649022675,0.004534080435306456,0.004534080435306456,Supports prediction
+numerical__Hemoglobin,Hemoglobin,-1.7417665002362923,0.004404461756495296,0.004404461756495296,Supports prediction
+categorical__Gender_Male,Gender Male,1.0,-0.003209953983018881,0.003209953983018881,Opposes prediction
+numerical__Age,Age,-0.7136355432127189,0.0024888211541001146,0.0024888211541001146,Supports prediction
+numerical__Hypertension,Hypertension,-0.983633906280109,-0.002219571444124661,0.002219571444124661,Opposes prediction
+categorical__Urine_Protein_Negative,Urine Protein Negative,0.0,0.002097906490817793,0.002097906490817793,Supports prediction
+numerical__Appetite_Loss,Appetite Loss,1.0151142067727543,0.00206197247582361,0.00206197247582361,Supports prediction
+numerical__Diabetes,Diabetes,0.9865899071018636,0.001820164875464297,0.001820164875464297,Supports prediction
+categorical__Urine_Protein_Trace,Urine Protein Trace,0.0,0.0015949568016670843,0.0015949568016670843,Supports prediction
+categorical__Urine_Protein_+1,Urine Protein +1,0.0,0.0012110555958246157,0.0012110555958246157,Supports prediction
+numerical__Calcium,Calcium,0.3063723696100823,-0.0007308883404050149,0.0007308883404050149,Opposes prediction
+numerical__Swelling,Swelling,1.0025031328271852,0.0006486960429766042,0.0006486960429766042,Supports prediction
+categorical__Urine_Protein_+2,Urine Protein +2,0.0,0.0006230858215098692,0.0006230858215098692,Supports prediction
+categorical__Urine_Protein_+3,Urine Protein +3,1.0,-0.0004915008227753333,0.0004915008227753333,Opposes prediction
+numerical__Potassium,Potassium,-0.2323731590861616,-0.00023336823166144192,0.00023336823166144192,Opposes prediction

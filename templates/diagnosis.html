@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>SmartDoseAI Diagnosis Panel</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+
+background:
+linear-gradient(rgba(5,10,25,0.94),
+rgba(5,10,25,0.96)),
+url('https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=2070');
+
+background-size:cover;
+background-position:center;
+
+min-height:100vh;
+
+padding:40px;
+
+color:white;
+}
+
+.container{
+
+background:
+rgba(255,255,255,0.05);
+
+padding:35px;
+
+border-radius:25px;
+max-width:720px;
+}
+
+h1{
+
+font-size:42px;
+
+color:#00ffff;
+
+margin-bottom:20px;
+}
+
+.card{
+
+background:
+rgba(255,255,255,0.05);
+
+padding:25px;
+
+border-radius:20px;
+margin-top:18px;
+}
+
+label{
+
+display:block;
+
+font-size:17px;
+
+font-weight:bold;
+
+margin-bottom:10px;
+}
+
+.module-banner{
+background:rgba(0,212,255,0.12);
+border:1px solid rgba(0,212,255,0.35);
+padding:14px 18px;
+border-radius:14px;
+margin-bottom:18px;
+font-size:16px;
+line-height:1.5;
+}
+
+.error-banner{
+background:rgba(239,68,68,0.15);
+border:1px solid rgba(239,68,68,0.45);
+padding:14px 18px;
+border-radius:14px;
+margin-bottom:18px;
+color:#fecaca;
+}
+
+.report-row{
+display:flex;
+align-items:flex-start;
+gap:12px;
+padding:12px 14px;
+border-radius:12px;
+margin-bottom:10px;
+background:rgba(255,255,255,0.06);
+border:1px solid rgba(255,255,255,0.08);
+cursor:pointer;
+}
+
+.report-row input{
+margin-top:4px;
+}
+
+.report-meta{
+font-size:13px;
+color:#94a3b8;
+margin-top:4px;
+}
+
+button{
+
+background:
+linear-gradient(90deg,#00d4ff,#007bff);
+
+padding:14px 28px;
+
+border:none;
+
+border-radius:12px;
+
+color:white;
+
+font-size:18px;
+
+font-weight:bold;
+
+cursor:pointer;
+margin-top:18px;
+}
+
+button:disabled{
+opacity:0.45;
+cursor:not-allowed;
+}
+
+.muted{
+color:#94a3b8;
+font-size:15px;
+margin-top:12px;
+line-height:1.5;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>
+
+🧠 SmartDoseAI Diagnosis Panel
+
+</h1>
+
+{% if diagnosis_error %}
+<div class="error-banner">{{ diagnosis_error }}</div>
+{% endif %}
+
+{% if disease_module_key %}
+<div class="module-banner">
+<strong>Assigned doctor:</strong> {{ assigned_doctor_name or '—' }}<br>
+<strong>AI disease module (automatic):</strong> {{ disease_module_label }}
+</div>
+{% elif not diagnosis_error %}
+<div class="error-banner">
+No disease module is mapped for this patient's assigned doctor. Use Dr. Sharma (kidney), Dr. Priya (diabetes), or Dr. Mehta / Dr. Reddy (heart) when registering the patient.
+</div>
+{% endif %}
+
+<div class="card">
+
+{% if disease_module_key and uploaded_reports|length > 0 %}
+
+<form action="/analyze_report/{{ patient.name }}" method="POST">
+
+<label>Select a lab report (uploaded by reception)</label>
+
+{% for r in uploaded_reports %}
+<label class="report-row">
+<input type="radio" name="report_filename" value="{{ r.filename }}" required {% if loop.first %}checked{% endif %}>
+<span>
+<strong>{{ r.filename }}</strong>
+<div class="report-meta">
+Uploaded: {{ r.uploaded_at }} · Appointment: {{ r.appointment_date }}{% if r.appointment_time %} at {{ r.appointment_time }}{% endif %}
+</div>
+</span>
+</label>
+{% endfor %}
+
+<button type="submit">Analyze Using AI</button>
+
+<p class="muted">
+The doctor cannot upload reports here. Reception adds PDFs under Medical History; they appear in this list with the upload timestamp.
+</p>
+
+</form>
+
+{% else %}
+
+<p class="muted">
+{% if not disease_module_key %}
+Fix the assigned doctor mapping above, then return to this page.
+{% else %}
+There are no lab reports on file for this patient. Go to <strong>Medical History → patient → Appointment History</strong> and use <strong>Upload lab report</strong> (reception only), then open diagnosis again.
+{% endif %}
+</p>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</body>
+
+</html>

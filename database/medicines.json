@@ -1,0 +1,577 @@
+{
+    "diabetes": {
+        "mild": [
+            {
+                "name": "Metformin 500mg",
+                "safe_dosage": "500mg",
+                "max_dosage": "1000mg",
+                "organ_risks": [
+                    "GI upset",
+                    "rare lactic acidosis risk"
+                ],
+                "contraindications": [
+                    {
+                        "parameter": "Creatinine",
+                        "condition": ">",
+                        "value": 1.5
+                    }
+                ],
+                "kidney_safety": "Contraindicated if Creatinine > 1.5",
+                "heart_safety": "Standard monitoring",
+                "interactions": "Iodinated contrast"
+            }
+        ],
+        "moderate": [
+            {
+                "name": "Metformin 1000mg",
+                "safe_dosage": "1000mg",
+                "max_dosage": "2000mg",
+                "organ_risks": [
+                    "Renal clearance monitoring"
+                ],
+                "contraindications": [
+                    {
+                        "parameter": "Creatinine",
+                        "condition": ">",
+                        "value": 1.5
+                    }
+                ],
+                "kidney_safety": "Contraindicated if Creatinine > 1.5",
+                "heart_safety": "Standard monitoring",
+                "interactions": "Iodinated contrast"
+            }
+        ],
+        "severe": [
+            {
+                "name": "Insulin Glargine 10 units nightly",
+                "safe_dosage": "10U",
+                "max_dosage": "40U",
+                "organ_risks": [
+                    "Hypoglycemia"
+                ],
+                "contraindications": [],
+                "kidney_safety": "Standard monitoring",
+                "heart_safety": "Standard monitoring",
+                "interactions": "None highlighted"
+            }
+        ]
+    },
+    "heart": {
+        "mild": [
+            {
+                "name": "Telmisartan 40mg",
+                "safe_dosage": "40mg",
+                "max_dosage": "80mg",
+                "organ_risks": [
+                    "Hyperkalemia",
+                    "AKI if dehydrated"
+                ],
+                "contraindications": [],
+                "kidney_safety": "Standard monitoring",
+                "heart_safety": "Standard monitoring",
+                "interactions": "None highlighted"
+            }
+        ],
+        "moderate": [
+            {
+                "name": "Metoprolol succinate 47.5mg daily",
+                "safe_dosage": "47.5mg",
+                "max_dosage": "190mg",
+                "organ_risks": [
+                    "Bradycardia",
+                    "fatigue"
+                ],
+                "contraindications": [],
+                "kidney_safety": "Standard monitoring",
+                "heart_safety": "Standard monitoring",
+                "interactions": "None highlighted"
+            }
+        ],
+        "severe": [
+            {
+                "name": "Amlodipine 10mg + Telmisartan 80mg",
+                "safe_dosage": "10mg/80mg",
+                "max_dosage": "Per attending",
+                "organ_risks": [
+                    "Hypotension",
+                    "peripheral edema"
+                ],
+                "contraindications": [],
+                "kidney_safety": "Standard monitoring",
+                "heart_safety": "Standard monitoring",
+                "interactions": "None highlighted"
+            }
+        ]
+    },
+    "heart_by_diagnosis": {
+        "Arrhythmia": {
+            "mild": [
+                {
+                    "name": "Metoprolol tartrate 12.5mg twice daily",
+                    "safe_dosage": "12.5mg BID",
+                    "max_dosage": "400mg/day",
+                    "organ_risks": [
+                        "Bradycardia",
+                        "hypotension"
+                    ],
+                    "contraindications": [],
+                    "kidney_safety": "Standard monitoring",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ],
+            "moderate": [
+                {
+                    "name": "Metoprolol tartrate 25mg twice daily",
+                    "safe_dosage": "25mg BID",
+                    "max_dosage": "400mg/day",
+                    "organ_risks": [
+                        "Bradycardia",
+                        "heart block"
+                    ],
+                    "contraindications": [],
+                    "kidney_safety": "Standard monitoring",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ],
+            "severe": [
+                {
+                    "name": "Metoprolol tartrate 50mg twice daily (monitor HR/BP)",
+                    "safe_dosage": "50mg BID",
+                    "max_dosage": "400mg/day",
+                    "organ_risks": [
+                        "Bradycardia",
+                        "fatigue"
+                    ],
+                    "contraindications": [],
+                    "kidney_safety": "Standard monitoring",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ]
+        },
+        "Coronary Artery Disease": {
+            "mild": [
+                {
+                    "name": "Atorvastatin 20mg + Aspirin 81mg daily",
+                    "safe_dosage": "20mg + 81mg",
+                    "max_dosage": "Atorvastatin 80mg daily ceiling (high-intensity)",
+                    "organ_risks": [
+                        "Bleeding",
+                        "myalgia"
+                    ],
+                    "contraindications": [
+                        {
+                            "parameter": "ALT",
+                            "condition": ">",
+                            "value": 150
+                        }
+                    ],
+                    "kidney_safety": "Standard monitoring",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ],
+            "moderate": [
+                {
+                    "name": "Atorvastatin 40mg + Aspirin 81mg daily",
+                    "safe_dosage": "40mg + 81mg",
+                    "max_dosage": "Atorvastatin 80mg daily ceiling",
+                    "organ_risks": [
+                        "Bleeding",
+                        "hepatic enzymes"
+                    ],
+                    "contraindications": [
+                        {
+                            "parameter": "ALT",
+                            "condition": ">",
+                            "value": 150
+                        }
+                    ],
+                    "kidney_safety": "Standard monitoring",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ],
+            "severe": [
+                {
+                    "name": "Atorvastatin 80mg daily + Aspirin 81mg (second antiplatelet only if prescribed)",
+                    "safe_dosage": "80mg + 81mg",
+                    "max_dosage": "Atorvastatin 80mg/day max \u00c2\u00b7 aspirin 325mg/day ceiling",
+                    "organ_risks": [
+                        "Bleeding",
+                        "hypotension"
+                    ],
+                    "contraindications": [
+                        {
+                            "parameter": "ALT",
+                            "condition": ">",
+                            "value": 150
+                        }
+                    ],
+                    "kidney_safety": "Standard monitoring",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ]
+        },
+        "Heart Failure": {
+            "mild": [
+                {
+                    "name": "Entresto (ARNI) low dose \u00e2\u20ac\u201d titrate per cardiology",
+                    "safe_dosage": "Start lowest tablet strength",
+                    "max_dosage": "Per guideline",
+                    "organ_risks": [
+                        "Hyperkalemia",
+                        "hypotension"
+                    ],
+                    "contraindications": [],
+                    "kidney_safety": "Standard monitoring",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ],
+            "moderate": [
+                {
+                    "name": "Furosemide 40mg daily + guideline-directed HF meds",
+                    "safe_dosage": "40mg",
+                    "max_dosage": "160mg",
+                    "organ_risks": [
+                        "Dehydration",
+                        "renal impairment"
+                    ],
+                    "contraindications": [],
+                    "kidney_safety": "Standard monitoring",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ],
+            "severe": [
+                {
+                    "name": "Inpatient diuresis + GDMT optimization",
+                    "safe_dosage": "IV furosemide per protocol",
+                    "max_dosage": "Per hospital protocol",
+                    "organ_risks": [
+                        "Hypotension",
+                        "AKI"
+                    ],
+                    "contraindications": [],
+                    "kidney_safety": "Standard monitoring",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ]
+        },
+        "Hypertension": {
+            "mild": [
+                {
+                    "name": "Telmisartan 40mg daily",
+                    "safe_dosage": "40mg",
+                    "max_dosage": "80mg",
+                    "organ_risks": [
+                        "Hyperkalemia"
+                    ],
+                    "contraindications": [],
+                    "kidney_safety": "Standard monitoring",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ],
+            "moderate": [
+                {
+                    "name": "Telmisartan 80mg daily",
+                    "safe_dosage": "80mg",
+                    "max_dosage": "80mg",
+                    "organ_risks": [
+                        "AKI if volume depleted"
+                    ],
+                    "contraindications": [],
+                    "kidney_safety": "Standard monitoring",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ],
+            "severe": [
+                {
+                    "name": "Amlodipine 10mg + Telmisartan 80mg daily",
+                    "safe_dosage": "10mg + 80mg",
+                    "max_dosage": "Amlodipine 10mg/day \u00c2\u00b7 Telmisartan 80mg/day typical maximums",
+                    "organ_risks": [
+                        "Edema",
+                        "hypotension"
+                    ],
+                    "contraindications": [],
+                    "kidney_safety": "Standard monitoring",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ]
+        },
+        "Paroxysmal Supraventricular Tachycardia (PSVT)": {
+            "mild": [
+                {
+                    "name": "Metoprolol tartrate 12.5mg twice daily",
+                    "safe_dosage": "12.5mg BID",
+                    "max_dosage": "400mg/day immediate-release metoprolol (theoretical max)",
+                    "organ_risks": [
+                        "Bradycardia",
+                        "hypotension"
+                    ],
+                    "contraindications": [],
+                    "kidney_safety": "Standard monitoring",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ],
+            "moderate": [
+                {
+                    "name": "Metoprolol tartrate 25mg twice daily",
+                    "safe_dosage": "25mg BID",
+                    "max_dosage": "400mg/day immediate-release metoprolol (theoretical max)",
+                    "organ_risks": [
+                        "Bradycardia",
+                        "heart block"
+                    ],
+                    "contraindications": [],
+                    "kidney_safety": "Standard monitoring",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ],
+            "severe": [
+                {
+                    "name": "Metoprolol tartrate 50mg twice daily with telemetry monitoring",
+                    "safe_dosage": "50mg BID",
+                    "max_dosage": "400mg/day immediate-release metoprolol (theoretical max)",
+                    "organ_risks": [
+                        "Bradycardia",
+                        "fatigue"
+                    ],
+                    "contraindications": [],
+                    "kidney_safety": "Standard monitoring",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ]
+        },
+        "Valve Disease": {
+            "mild": [
+                {
+                    "name": "Antibiotic prophylaxis only when guideline-indicated",
+                    "safe_dosage": "Single dose per guideline",
+                    "max_dosage": "Per infectious disease protocol",
+                    "organ_risks": [
+                        "Drug allergy"
+                    ],
+                    "contraindications": [],
+                    "kidney_safety": "Standard monitoring",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ],
+            "moderate": [
+                {
+                    "name": "Rate/rhythm control + cardiology echo surveillance",
+                    "safe_dosage": "Metoprolol 25mg BID example starter",
+                    "max_dosage": "Metoprolol 400mg/day oral ceiling (immediate-release)",
+                    "organ_risks": [
+                        "Bradycardia"
+                    ],
+                    "contraindications": [],
+                    "kidney_safety": "Standard monitoring",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ],
+            "severe": [
+                {
+                    "name": "Referral for surgical / transcatheter valve evaluation",
+                    "safe_dosage": "Per specialist",
+                    "max_dosage": "N/A",
+                    "organ_risks": [
+                        "Procedure risk"
+                    ],
+                    "contraindications": [],
+                    "kidney_safety": "Standard monitoring",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ]
+        }
+    },
+    "kidney": {
+        "mild": [
+            {
+                "name": "ACE inhibitor low dose (if BP/indication)",
+                "safe_dosage": "Per attending",
+                "max_dosage": "Per protocol",
+                "organ_risks": [
+                    "Hyperkalemia"
+                ],
+                "contraindications": [],
+                "kidney_safety": "Standard monitoring",
+                "heart_safety": "Standard monitoring",
+                "interactions": "None highlighted"
+            }
+        ],
+        "moderate": [
+            {
+                "name": "Furosemide 20mg",
+                "safe_dosage": "20mg",
+                "max_dosage": "80mg",
+                "organ_risks": [
+                    "Dehydration",
+                    "hypotension"
+                ],
+                "contraindications": [],
+                "kidney_safety": "Standard monitoring",
+                "heart_safety": "Standard monitoring",
+                "interactions": "None highlighted"
+            }
+        ],
+        "severe": [
+            {
+                "name": "Erythropoiesis-stimulating agent \u00e2\u20ac\u201d nephrology-directed",
+                "safe_dosage": "Per protocol",
+                "max_dosage": "Per protocol",
+                "organ_risks": [
+                    "Hypertension",
+                    "thrombosis risk"
+                ],
+                "contraindications": [],
+                "kidney_safety": "Standard monitoring",
+                "heart_safety": "Standard monitoring",
+                "interactions": "None highlighted"
+            }
+        ]
+    },
+    "diabetes_by_diagnosis": {
+        "Type 2 Diabetes": {
+            "mild": [
+                {
+                    "name": "Metformin 500mg twice daily",
+                    "safe_dosage": "500mg BID",
+                    "max_dosage": "2000mg/day",
+                    "organ_risks": [
+                        "GI upset",
+                        "renal dosing review"
+                    ],
+                    "contraindications": [
+                        {
+                            "parameter": "Creatinine",
+                            "condition": ">",
+                            "value": 1.5
+                        }
+                    ],
+                    "kidney_safety": "Contraindicated if Creatinine > 1.5",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ],
+            "moderate": [
+                {
+                    "name": "Metformin 1000mg twice daily",
+                    "safe_dosage": "1000mg BID",
+                    "max_dosage": "2550mg/day",
+                    "organ_risks": [
+                        "Vitamin B12 monitoring"
+                    ],
+                    "contraindications": [
+                        {
+                            "parameter": "Creatinine",
+                            "condition": ">",
+                            "value": 1.5
+                        }
+                    ],
+                    "kidney_safety": "Contraindicated if Creatinine > 1.5",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ],
+            "severe": [
+                {
+                    "name": "Basal insulin (e.g., Glargine) starter dose \u00e2\u20ac\u201d endocrine-directed",
+                    "safe_dosage": "10U nightly typical starter",
+                    "max_dosage": "Per protocol",
+                    "organ_risks": [
+                        "Hypoglycemia"
+                    ],
+                    "contraindications": [],
+                    "kidney_safety": "Standard monitoring",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ]
+        },
+        "Type 1 Diabetes": {
+            "moderate": [
+                {
+                    "name": "Basal-bolus insulin regimen \u00e2\u20ac\u201d educator-guided",
+                    "safe_dosage": "Per carb ratio/ISF",
+                    "max_dosage": "Per protocol",
+                    "organ_risks": [
+                        "Hypoglycemia",
+                        "DKA education"
+                    ],
+                    "contraindications": [],
+                    "kidney_safety": "Standard monitoring",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ],
+            "severe": [
+                {
+                    "name": "Intensive insulin therapy + ketone monitoring plan",
+                    "safe_dosage": "Per endocrinology",
+                    "max_dosage": "Per protocol",
+                    "organ_risks": [
+                        "Hypoglycemia"
+                    ],
+                    "contraindications": [],
+                    "kidney_safety": "Standard monitoring",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ]
+        },
+        "Gestational Diabetes": {
+            "moderate": [
+                {
+                    "name": "Medical nutrition therapy + insulin if sugars persistently high",
+                    "safe_dosage": "Per OB protocol",
+                    "max_dosage": "Per OB protocol",
+                    "organ_risks": [
+                        "Neonatal hypoglycemia risk counseling"
+                    ],
+                    "contraindications": [],
+                    "kidney_safety": "Standard monitoring",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ]
+        },
+        "Prediabetes": {
+            "mild": [
+                {
+                    "name": "Lifestyle intervention + Metformin if indicated",
+                    "safe_dosage": "Metformin 500mg daily optional",
+                    "max_dosage": "Per clinician",
+                    "organ_risks": [
+                        "GI upset"
+                    ],
+                    "contraindications": [
+                        {
+                            "parameter": "Creatinine",
+                            "condition": ">",
+                            "value": 1.5
+                        }
+                    ],
+                    "kidney_safety": "Contraindicated if Creatinine > 1.5",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted"
+                }
+            ]
+        }
+    }
+}

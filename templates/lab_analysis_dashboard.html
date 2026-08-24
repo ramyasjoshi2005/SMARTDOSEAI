@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab Analysis Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-purple: #c084fc;
+            --alert-red: #ef4444;
+            --alert-yellow: #f59e0b;
+            --success-green: #10b981;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--bg-dark); color: var(--text-light); padding: 40px; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .header h1 { font-size: 2.5rem; background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header p { color: var(--text-muted); font-size: 1.1rem; margin-top: 10px; }
+        
+        .patient-card { background: var(--bg-card); border-radius: 16px; padding: 30px; margin-bottom: 40px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); }
+        .patient-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
+        .info-item .label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .info-item .value { font-size: 1.1rem; font-weight: 600; color: var(--text-light); }
+        
+        .tabs { display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+        .tab-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--text-light); padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
+        .tab-btn:hover, .tab-btn.active { background: var(--accent-blue); color: #000; box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
+        
+        .parameters-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .param-card { background: rgba(0,0,0,0.2); padding: 20px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border-left: 4px solid var(--accent-blue); transition: transform 0.2s; }
+        .param-card:hover { transform: translateY(-3px); }
+        .param-name { font-weight: 600; color: var(--text-muted); font-size: 0.9rem; }
+        .param-value { font-size: 1.3rem; font-weight: 700; color: var(--text-light); }
+        .status-badge { padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; text-transform: none; letter-spacing: 0.02em; white-space: nowrap; }
+        .status-high { background: rgba(239, 68, 68, 0.2); color: var(--alert-red); border: 1px solid var(--alert-red); }
+        .status-normal { background: rgba(16, 185, 129, 0.2); color: var(--success-green); border: 1px solid var(--success-green); }
+        .status-warn { background: rgba(234, 179, 8, 0.2); color: #fbbf24; border: 1px solid rgba(234, 179, 8, 0.65); }
+        .status-danger { background: rgba(250, 204, 21, 0.12); color: #facc15; border: 1px solid rgba(250, 204, 21, 0.55); }
+        .status-risk { background: rgba(239, 68, 68, 0.2); color: var(--alert-red); border: 1px solid var(--alert-red); }
+
+        .record-picker-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; max-width: 1100px; margin: 0 auto 40px auto; }
+        .record-card { display: block; text-decoration: none; color: inherit; background: var(--bg-card); border-radius: 16px; padding: 26px 24px; border: 1px solid rgba(255,255,255,0.06); transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; box-shadow: 0 12px 32px rgba(0,0,0,0.45); }
+        .record-card:hover { transform: translateY(-5px); border-color: rgba(56,189,248,0.55); box-shadow: 0 16px 40px rgba(0,0,0,0.55); }
+        .record-card-title { font-size: 1.35rem; font-weight: 700; color: var(--text-light); margin-bottom: 10px; }
+        .record-card-meta { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 14px; }
+        .record-card-hint { font-size: 0.88rem; color: rgba(148, 163, 184, 0.95); }
+        .record-card-cta { display: inline-block; margin-top: 18px; background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); color: #0f172a; font-weight: 800; padding: 10px 18px; border-radius: 10px; font-size: 0.92rem; }
+        .record-card h3 { margin: 0 0 8px 0; font-size: 1.25rem; color: var(--text-light); }
+        .record-card .meta { color: var(--text-muted); font-size: 0.95rem; }
+        .record-card .hint { margin-top: 16px; color: var(--accent-blue); font-weight: 800; font-size: 0.9rem; }
+        
+        .upload-section { margin-top: 30px; padding: 30px; background: rgba(255,255,255,0.02); border: 2px dashed rgba(255,255,255,0.1); border-radius: 12px; text-align: center; }
+        .upload-btn { background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); padding: 12px 24px; border: none; border-radius: 8px; color: white; font-weight: bold; cursor: pointer; margin-top: 15px; transition: opacity 0.3s; font-size: 1rem; }
+        .upload-btn:hover { opacity: 0.9; }
+        
+        .critical-alert { background: rgba(239, 68, 68, 0.1); border-left: 4px solid var(--alert-red); padding: 15px; border-radius: 8px; margin-top: 20px; display: flex; align-items: center; gap: 15px; }
+        .critical-alert span { color: var(--alert-red); font-weight: bold; }
+        
+        .reports-list { margin-top: 20px; display: flex; gap: 15px; flex-wrap: wrap; }
+        .report-item { background: rgba(56, 189, 248, 0.1); color: var(--accent-blue); padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: all 0.3s; display: flex; align-items: center; gap: 8px; border: 1px solid rgba(56, 189, 248, 0.3); }
+        .report-item:hover { background: var(--accent-blue); color: #000; }
+        
+        /* Specific Tab contents */
+        .tab-content { display: none; margin-top: 20px; }
+        .tab-content.active { display: block; animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .nav-actions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-bottom: 28px; }
+        .nav-actions a { text-decoration: none; background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); padding: 12px 22px; border-radius: 10px; color: #0f172a; font-weight: 700; font-size: 0.95rem; border: none; }
+        .nav-actions a.secondary { background: rgba(255,255,255,0.08); color: var(--text-light); border: 1px solid rgba(255,255,255,0.12); }
+    </style>
+</head>
+<body>
+
+    <div class="nav-actions">
+        <a href="/ai_diagnosis_dashboard{% if focus_patient %}?patient={{ focus_patient | urlencode }}{% if focus_appt_index is not none %}&appt={{ focus_appt_index }}{% endif %}{% endif %}">Open AI Analysis Dashboard →</a>
+        {% if focus_patient and not record_picker_mode %}
+        <a href="/lab_analysis_dashboard" class="secondary">← All lab records</a>
+        {% endif %}
+    </div>
+
+    <div class="header">
+        <h1>🧪 Lab Analysis Dashboard</h1>
+        <p>Raw Medical Test Data & OCR Extraction Interface</p>
+    </div>
+
+    {% if record_picker_mode %}
+    <p style="text-align: center; color: var(--text-muted); max-width: 640px; margin: -28px auto 28px auto; line-height: 1.55;">
+        Choose a stored lab / OCR encounter (same idea as the Smart Dose Engine patient list). Each row opens that visit’s extracted parameters and reports.
+    </p>
+    <div class="record-picker-grid">
+        {% for rec in lab_records %}
+        <a class="record-card" href="/lab_analysis_dashboard?patient={{ rec.patient_name | urlencode }}&appt={{ rec.appt_index }}">
+            <h3>{{ rec.patient_name }}</h3>
+            <div class="meta">Visit date: {{ rec.appointment_date }}</div>
+            <div class="meta" style="margin-top:6px;">{{ rec.report_hint }}</div>
+            <div class="hint">Open lab analysis →</div>
+        </a>
+        {% else %}
+        <div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px;">
+            No lab encounters on file yet. Upload a report from Medical History, then run AI diagnosis to populate OCR values.
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if appt_error == 'patient_not_found' %}
+    <div style="max-width: 720px; margin: 0 auto 28px auto; padding: 18px; border-radius: 12px; background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.45); color: #fecaca;">
+        No patient named “{{ focus_patient }}” was found.
+        <a href="/lab_analysis_dashboard" style="color: var(--accent-blue); font-weight: 700; margin-left: 8px;">Back to lab records</a>
+    </div>
+    {% elif appt_error == 'bad_appt_index' %}
+    <div style="max-width: 720px; margin: 0 auto 28px auto; padding: 18px; border-radius: 12px; background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.45); color: #fecaca;">
+        That visit index is not on file for this patient.
+        <a href="/lab_analysis_dashboard" style="color: var(--accent-blue); font-weight: 700; margin-left: 8px;">Back to lab records</a>
+    </div>
+    {% endif %}
+
+    {% if analyzed_complete %}
+    <div style="max-width: 900px; margin: -10px auto 28px auto; padding: 14px 18px; border-radius: 10px; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.5); color: #a7f3d0; font-weight: 600;">
+        ✓ AI analysis finished — OCR values for this patient are shown under the matching appointment below.
+    </div>
+    {% endif %}
+
+    {% for patient in patients %}
+        {% if patient.appointments %}
+        <div class="patient-card">
+            <!-- 1. PATIENT INFO CARD -->
+            <div class="patient-header">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="label">Patient Name</div>
+                        <div class="value">{{ patient.name }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">Age</div>
+                        <div class="value">{{ patient.age | default('N/A') }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">Gender</div>
+                        <div class="value">{{ patient.gender | default('N/A') }}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">Assigned Doctor</div>
+                        <div class="value">{{ patient.assigned_doctor | default('Unassigned') }}</div>
+                    </div>
+                </div>
+            </div>
+
+            {% set outer_loop = loop %}
+            {% for appointment in patient.appointments %}
+                
+                <h3 style="color: var(--text-muted); font-size: 1rem; margin-bottom: 15px;">Appointment Date: {{ appointment.appointment_date | default('N/A') }}</h3>
+
+                <!-- Critical Alerts Example -->
+                {% if appointment.organ_risk == 'High Risk' or appointment.severity == 'High' %}
+                <div class="critical-alert">
+                    <span>⚠️ CRITICAL ALERT:</span> Abnormal values detected. Immediate review required.
+                </div>
+                {% endif %}
+
+                <!-- 2. TEST TYPE SELECTION -->
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab(this, 'all-{{outer_loop.index}}-{{loop.index}}')">All Extracted Parameters</button>
+                    <button class="tab-btn" onclick="switchTab(this, 'diabetes-{{outer_loop.index}}-{{loop.index}}')">Diabetes Profile</button>
+                    <button class="tab-btn" onclick="switchTab(this, 'heart-{{outer_loop.index}}-{{loop.index}}')">Heart Profile</button>
+                    <button class="tab-btn" onclick="switchTab(this, 'kidney-{{outer_loop.index}}-{{loop.index}}')">Kidney Profile</button>
+                </div>
+
+                {% set ap = (appointment.parameters or {}) | canonical_lab_params %}
+                <div id="all-{{outer_loop.index}}-{{loop.index}}" class="tab-content active">
+                    <div class="parameters-grid">
+                        {% if ap %}
+                            {% for key, value in (ap|dictsort) %}
+                                {% set b = key|lab_param_badge(value) %}
+                                <div class="param-card">
+                                    <div>
+                                        <div class="param-name">{{ key | replace('_',' ') }}</div>
+                                        <div class="param-value">{{ value }}</div>
+                                    </div>
+                                    <div class="status-badge status-{{ b.tier }}">{{ b.label }}</div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <p style="color: var(--text-muted); font-style: italic; padding: 20px 0;">No parameters extracted for this appointment.</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div id="diabetes-{{outer_loop.index}}-{{loop.index}}" class="tab-content">
+                    <div class="parameters-grid">
+                        {% for k in ['Fasting_Glucose','Postprandial_Glucose','HbA1c','Insulin','C_Peptide'] %}
+                        {% set vv = ap.get(k, '—') %}
+                        {% set b = k|lab_param_badge(vv) %}
+                        <div class="param-card">
+                            <div>
+                                <div class="param-name">{{ k | replace('_',' ') }}</div>
+                                <div class="param-value">{{ vv }}</div>
+                            </div>
+                            {% if vv != '—' %}
+                            <div class="status-badge status-{{ b.tier }}">{{ b.label }}</div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div id="heart-{{outer_loop.index}}-{{loop.index}}" class="tab-content">
+                    <div class="parameters-grid">
+                        {% for k in ['Systolic_BP','Diastolic_BP','Heart_Rate','Cholesterol','LDL','HDL','Troponin','NT-proBNP','BNP','Potassium','Magnesium','TSH'] %}
+                        {% set vv = ap.get(k, '—') %}
+                        {% set b = k|lab_param_badge(vv) %}
+                        <div class="param-card">
+                            <div>
+                                <div class="param-name">{{ k | replace('_',' ') }}</div>
+                                <div class="param-value">{{ vv }}</div>
+                            </div>
+                            {% if vv != '—' %}
+                            <div class="status-badge status-{{ b.tier }}">{{ b.label }}</div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div id="kidney-{{outer_loop.index}}-{{loop.index}}" class="tab-content">
+                    <div class="parameters-grid">
+                        {% for k in ['Creatinine','Blood_Urea','eGFR','Uric_Acid','Potassium','Calcium'] %}
+                        {% set vv = ap.get(k, '—') %}
+                        {% set b = k|lab_param_badge(vv) %}
+                        <div class="param-card">
+                            <div>
+                                <div class="param-name">{{ k | replace('_',' ') }}</div>
+                                <div class="param-value">{{ vv }}</div>
+                            </div>
+                            {% if vv != '—' %}
+                            <div class="status-badge status-{{ b.tier }}">{{ b.label }}</div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                {% if appointment.lab_analysis_record %}
+                <div style="margin-top: 28px; padding: 18px; border-radius: 12px; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25);">
+                    <h3 style="color: var(--accent-blue); margin-bottom: 12px; font-size: 1.05rem;">Structured Lab Analysis Record</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 8px;">
+                        Last OCR run: <strong style="color: var(--text-light);">{{ appointment.lab_analysis_record.analyzed_at }}</strong>
+                        · Report: <strong style="color: var(--text-light);">{{ appointment.lab_analysis_record.report_name }}</strong>
+                    </p>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 8px;">
+                        Module: <strong style="color: var(--text-light);">{{ appointment.lab_analysis_record.disease_module }}</strong>
+                        · Linked AI label: <strong style="color: var(--text-light);">{{ appointment.lab_analysis_record.ai_diagnosis }}</strong>
+                    </p>
+                    {% if appointment.lab_analysis_record.structured_pdf_diagnosis %}
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">
+                        PDF diagnosis field: <strong style="color: #a7f3d0;">{{ appointment.lab_analysis_record.structured_pdf_diagnosis }}</strong>
+                    </p>
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <!-- REPORT UPLOAD & STORED REPORTS -->
+                <div style="margin-top: 35px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px;">
+                    <h3 style="color: var(--text-light); margin-bottom: 15px; font-size: 1.1rem;">Stored Reports</h3>
+                    <div class="reports-list">
+                        {% if appointment.lab_reports %}
+                            {% for report in appointment.lab_reports %}
+                                <a href="/uploads/{{ report | lab_filename }}" class="report-item" target="_blank">
+                                    📄 {{ report | lab_filename }}{% if report | lab_uploaded_at %} · {{ report | lab_uploaded_at }}{% endif %}
+                                </a>
+                            {% endfor %}
+                        {% else %}
+                            <p style="color: var(--text-muted); font-size: 0.9rem; font-style: italic;">No reports uploaded for this appointment.</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <p style="color: var(--text-muted); margin-top: 18px; font-size: 0.9rem;">
+                    Reports are uploaded under <strong style="color: var(--text-light);">Medical History → patient → Reception upload</strong>. OCR runs when the doctor runs AI diagnosis on a selected file.
+                </p>
+                
+                {% if not loop.last %}
+                <hr style="border-color: rgba(255,255,255,0.05); margin: 40px 0;">
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+    {% endfor %}
+
+    <script>
+        function switchTab(btn, tabId) {
+            const container = btn.parentElement.parentElement;
+            const buttons = btn.parentElement.querySelectorAll('.tab-btn');
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const contents = container.querySelectorAll('.tab-content');
+            contents.forEach(c => c.classList.remove('active'));
+            
+            container.querySelector('#' + tabId).classList.add('active');
+        }
+    </script>
+</body>
+</html>

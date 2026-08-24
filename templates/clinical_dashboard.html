@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Clinical summary</title>
+<style>
+body{font-family:Outfit,sans-serif;background:#020617;color:#f8fafc;padding:28px;}
+.wrap{max-width:1100px;margin:0 auto;}
+h1{color:#38bdf8;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.card{background:#0f172a;padding:20px;border-radius:16px;border:1px solid rgba(255,255,255,.06);}
+.muted{color:#94a3b8;font-size:.9rem;line-height:1.5;}
+.pred{font-size:1.8rem;font-weight:800;}
+.warn{color:#fbbf24;}
+a.btn{display:inline-block;margin:8px 8px 0 0;padding:10px 16px;background:#3b82f6;color:#fff;text-decoration:none;border-radius:10px;font-weight:700;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="muted"><a href="/ai_diagnosis_dashboard?patient={{ patient.name | urlencode }}" style="color:#38bdf8;">AI dashboard</a></p>
+<h1>Clinical summary — {{ patient.name }}</h1>
+<p class="muted">One place for prediction, why-the-model, dosing, safety, twin, and report. Educational decision support only.</p>
+<div class="grid">
+<div class="card">
+<div class="muted">Patient</div>
+<p>{{ patient.name }} · Age {{ patient.age }} · {{ patient.gender }}</p>
+<p class="muted">{{ patient.symptoms }}</p>
+</div>
+<div class="card">
+<div class="muted">Lab reports</div>
+{% if appt.lab_reports %}
+<ul style="list-style: none; padding: 0; margin-top: 8px;">
+  {% for report in appt.lab_reports %}
+  <li style="margin-bottom: 8px;">
+    <strong style="color: #fff;">{{ report | lab_filename }}</strong><br>
+    <span style="color: #94a3b8; font-size: 0.8rem;">Uploaded by Reception</span>
+    {% if report | lab_uploaded_at %}
+    <span style="color: #94a3b8; font-size: 0.8rem;"> on {{ report | lab_uploaded_at }}</span>
+    {% endif %}
+    <br>
+    <a href="/uploads/{{ report | lab_filename }}" target="_blank" style="display: inline-block; margin-top: 6px; padding: 4px 10px; background: #1e293b; color: #38bdf8; text-decoration: none; border-radius: 6px; font-size: 0.8rem; border: 1px solid rgba(255,255,255,0.08);">[View Report]</a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="muted" style="margin-top: 8px;">No original lab reports attached.</p>
+{% endif %}
+</div>
+<div class="card">
+<div class="muted">AI prediction</div>
+<div class="pred">{{ appt.ai_prediction }}</div>
+<p>Model probability <strong>{{ appt.confidence_score }}%</strong> · Confidence band <strong>{{ appt.confidence_band or '—' }}</strong></p>
+<p class="muted">Model probability is not medical certainty.</p>
+</div>
+<div class="card">
+<div class="muted">Doctor view</div>
+<p>{{ appt.doctor_view or appt.ai_explanation }}</p>
+<ul>
+{% for feat in (appt.shap_explanation.top_features if appt.shap_explanation else []) %}
+<li>{{ feat.readable_feature }} = {{ feat.display_value }} — {{ feat.strength }}</li>
+{% endfor %}
+</ul>
+</div>
+<div class="card">
+<div class="muted">Patient view</div>
+<p>{{ appt.patient_view or appt.ai_explanation }}</p>
+</div>
+<div class="card">
+<div class="muted">Smart Dose</div>
+<p><strong>{{ dose.medicine }}</strong> ({{ dose.dose }})</p>
+<p class="{% if dose.status in ('REVIEW REQUIRED', 'Requires Doctor Review') %}warn{% endif %}">Status: {{ dose.status }}</p>
+<p class="muted">{{ dose.selection_reason }}</p>
+{% for flag in dose.safety_flags or [] %}
+<p class="warn">{{ flag.check }}: {{ flag.reason }}</p>
+{% endfor %}
+</div>
+<div class="card">
+<div class="muted">Digital Twin</div>
+<p>{{ twin.diagnosis_line }}</p>
+<p class="muted">{{ twin.simulation_disclaimer }}</p>
+</div>
+</div>
+<p>
+<a class="btn" href="/smart_dose/{{ patient.name | urlencode }}">Smart Dose</a>
+<a class="btn" href="/digital_twin/{{ patient.name | urlencode }}">Digital Twin</a>
+<a class="btn" href="/generate_report/{{ patient.name | urlencode }}">PDF report</a>
+</p>
+</div>
+</body>
+</html>

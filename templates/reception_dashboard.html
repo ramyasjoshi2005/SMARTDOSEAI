@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Reception Dashboard</title>
+
+<style>
+
+body{
+
+    background:#0f172a;
+
+    color:white;
+
+    font-family:Poppins;
+
+    padding:40px;
+}
+
+h1{
+
+    color:#00d4ff;
+
+    margin-bottom:40px;
+}
+
+.container{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:30px;
+}
+
+.card{
+
+    background:rgba(255,255,255,0.08);
+
+    padding:40px;
+
+    border-radius:24px;
+
+    text-decoration:none;
+
+    color:white;
+}
+
+.card h2{
+
+    color:#00d4ff;
+
+    margin-bottom:10px;
+}
+
+.logout{
+
+    display:inline-block;
+
+    margin-bottom:30px;
+
+    padding:12px 20px;
+
+    border-radius:12px;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:
+    linear-gradient(90deg,#00d4ff,#007bff);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<a href="/"
+class="logout">
+
+Logout
+
+</a>
+
+<h1>
+👩‍💼 Reception Dashboard
+</h1>
+
+<div class="container">
+
+<a href="/patient"
+class="card">
+
+<h2>
+🧾 Patient Registration
+</h2>
+
+<p>
+Register patient details.
+</p>
+
+</a>
+
+<a href="/history"
+class="card">
+
+<h2>
+📋 Medical History
+</h2>
+
+<p>
+View hospital patient records.
+</p>
+
+</a>
+
+</div>
+
+</body>
+
+</html>

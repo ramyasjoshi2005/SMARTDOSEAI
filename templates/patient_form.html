@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>SmartDoseAI Patient Registration</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background:
+    linear-gradient(rgba(5,10,25,0.90),
+    rgba(5,10,25,0.94)),
+    url('https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=2070');
+
+    background-size:cover;
+    background-position:center;
+
+    min-height:100vh;
+
+    color:white;
+
+    padding:20px;
+}
+
+.container{
+
+    width:100%;
+
+    max-width:1900px;
+
+    margin:auto;
+
+    background:
+    rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:24px;
+
+    padding:35px;
+}
+
+.header{
+
+    text-align:center;
+
+    margin-bottom:35px;
+}
+
+.header h1{
+
+    color:#00d4ff;
+
+    font-size:52px;
+
+    margin-bottom:10px;
+}
+
+.header p{
+
+    color:#ddd;
+
+    font-size:18px;
+}
+
+.section-title{
+
+    color:#00d4ff;
+
+    font-size:30px;
+
+    margin-top:38px;
+
+    margin-bottom:22px;
+
+    padding-bottom:12px;
+
+    border-bottom:
+    1px solid rgba(255,255,255,0.08);
+}
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:18px;
+}
+
+.input-box{
+
+    display:flex;
+
+    flex-direction:column;
+}
+
+label{
+
+    margin-bottom:8px;
+
+    font-size:14px;
+
+    font-weight:600;
+}
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:
+    rgba(255,255,255,0.10);
+
+    color:white;
+
+    font-size:14px;
+
+    outline:none;
+}
+
+input::placeholder,
+textarea::placeholder{
+
+    color:#d0d0d0;
+}
+
+textarea{
+
+    resize:none;
+
+    height:90px;
+}
+
+select option{
+
+    color:black;
+}
+
+.bmi-box{
+
+    margin-top:15px;
+
+    color:#00ffcc;
+
+    font-weight:bold;
+
+    font-size:18px;
+}
+
+.checkbox-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(5,1fr);
+
+    gap:18px;
+
+    margin-top:20px;
+}
+
+.symptom-card{
+
+    background:
+    rgba(255,255,255,0.08);
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    border-radius:16px;
+
+    padding:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    cursor:pointer;
+
+    min-height:72px;
+}
+
+.symptom-card input{
+
+    width:18px;
+
+    height:18px;
+
+    accent-color:#00d4ff;
+}
+
+.btn{
+
+    width:100%;
+
+    margin-top:40px;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:
+    linear-gradient(90deg,#00d4ff,#007bff);
+
+    color:white;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+@media(max-width:1200px){
+
+    .grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .checkbox-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+}
+
+@media(max-width:700px){
+
+    .grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .checkbox-grid{
+
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>
+🏥 SmartDoseAI Patient Registration
+</h1>
+
+<p>
+AI Smart Dose Recommendation &
+Clinical Decision Support System
+</p>
+
+</div>
+
+<form action="/save_patient"
+method="POST">
+
+<!-- ================================================= -->
+<!-- PERSONAL INFORMATION -->
+<!-- ================================================= -->
+
+<h2 class="section-title">
+👤 Personal Information
+</h2>
+
+<div class="grid">
+
+<div class="input-box">
+
+<label>Full Name</label>
+
+<input type="text"
+name="name"
+placeholder="Enter patient name"
+required>
+
+</div>
+
+<div class="input-box">
+
+<label>Age</label>
+
+<input type="number"
+name="age"
+placeholder="Enter age">
+
+</div>
+
+<div class="input-box">
+
+<label>Gender</label>
+
+<select name="gender">
+
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+
+</select>
+
+</div>
+
+<div class="input-box">
+
+<label>Phone Number</label>
+
+<input type="text"
+name="phone"
+placeholder="Enter phone number">
+
+</div>
+
+<div class="input-box">
+
+<label>Email Address</label>
+
+<input type="email"
+name="email"
+placeholder="Enter email address">
+
+</div>
+
+<div class="input-box">
+
+<label>Emergency Contact</label>
+
+<input type="text"
+name="emergency_contact"
+placeholder="Emergency contact number">
+
+</div>
+
+<div class="input-box">
+
+<label>Home Address</label>
+
+<input type="text"
+name="address"
+placeholder="Enter home address">
+
+</div>
+
+<div class="input-box">
+
+<label>Blood Group</label>
+
+<select name="blood_group">
+
+<option>A+</option>
+<option>A-</option>
+<option>B+</option>
+<option>B-</option>
+<option>AB+</option>
+<option>AB-</option>
+<option>O+</option>
+<option>O-</option>
+
+</select>
+
+</div>
+
+<div class="input-box">
+
+<label>Height (cm)</label>
+
+<input type="number"
+id="height"
+name="height"
+placeholder="Enter height">
+
+</div>
+
+<div class="input-box">
+
+<label>Weight (kg)</label>
+
+<input type="number"
+id="weight"
+name="weight"
+placeholder="Enter weight">
+
+</div>
+
+<div class="input-box">
+
+<label>Appointment Date</label>
+
+<input type="date"
+name="appointment_date">
+
+</div>
+
+<div class="input-box">
+
+<label>Appointment Time</label>
+
+<input type="time"
+name="appointment_time">
+
+</div>
+
+
+
+<div class="input-box">
+
+<label>Assigned Doctor</label>
+
+<select name="assigned_doctor">
+
+<option>Dr. Sharma</option>
+<option>Dr. Priya</option>
+<option>Dr. Mehta</option>
+<option>Dr. Reddy</option>
+
+</select>
+
+</div>
+
+<div class="input-box">
+
+<label>Reason of Visit</label>
+
+<input type="text"
+name="reason_visit"
+placeholder="Enter reason for visit">
+
+</div>
+
+</div>
+
+<div class="bmi-box"
+id="bmiResult">
+
+BMI: --
+
+</div>
+
+<!-- ================================================= -->
+<!-- CURRENT SYMPTOMS -->
+<!-- ================================================= -->
+
+<h2 class="section-title">
+🩺 Current Symptoms
+</h2>
+
+<div class="checkbox-grid">
+
+<label class="symptom-card">
+<input type="checkbox"
+name="symptoms"
+value="Chest Pain">
+Chest Pain
+</label>
+
+<label class="symptom-card">
+<input type="checkbox"
+name="symptoms"
+value="Fatigue">
+Fatigue
+</label>
+
+<label class="symptom-card">
+<input type="checkbox"
+name="symptoms"
+value="Excessive Thirst">
+Excessive Thirst
+</label>
+
+<label class="symptom-card">
+<input type="checkbox"
+name="symptoms"
+value="Frequent Urination">
+Frequent Urination
+</label>
+
+<label class="symptom-card">
+<input type="checkbox"
+name="symptoms"
+value="Swelling">
+Swelling
+</label>
+
+<label class="symptom-card">
+<input type="checkbox"
+name="symptoms"
+value="Flank Pain">
+Flank Pain
+</label>
+
+<label class="symptom-card">
+<input type="checkbox"
+name="symptoms"
+value="Dizziness">
+Dizziness
+</label>
+
+<label class="symptom-card">
+<input type="checkbox"
+name="symptoms"
+value="Headache">
+Headache
+</label>
+
+<label class="symptom-card">
+<input type="checkbox"
+name="symptoms"
+value="Shortness of Breath">
+Shortness of Breath
+</label>
+
+<label class="symptom-card">
+<input type="checkbox"
+name="symptoms"
+value="Fever">
+Fever
+</label>
+
+<label class="symptom-card">
+<input type="checkbox"
+name="symptoms"
+value="Nausea">
+Nausea
+</label>
+
+<label class="symptom-card">
+<input type="checkbox"
+name="symptoms"
+value="Blurred Vision">
+Blurred Vision
+</label>
+
+<label class="symptom-card">
+<input type="checkbox"
+name="symptoms"
+value="Vomiting">
+Vomiting
+</label>
+
+
+</div>
+
+<div class="grid"
+style="margin-top:20px;">
+
+<div class="input-box">
+
+<label>Other Symptoms</label>
+
+<textarea
+name="other_symptoms"
+placeholder="Enter additional symptoms"></textarea>
+
+</div>
+
+</div>
+
+<!-- ================================================= -->
+<!-- LIFESTYLE -->
+<!-- ================================================= -->
+
+<h2 class="section-title">
+🌿 Lifestyle & Habits
+</h2>
+
+<div class="grid">
+
+<div class="input-box">
+
+<label>Smoking Habit</label>
+
+<select name="smoking">
+
+<option>No</option>
+<option>Occasionally</option>
+<option>Daily</option>
+
+</select>
+
+</div>
+
+<div class="input-box">
+
+<label>Tobacco Usage</label>
+
+<select name="tobacco">
+
+<option>No</option>
+<option>Yes</option>
+
+</select>
+
+</div>
+
+<div class="input-box">
+
+<label>Alcohol Consumption</label>
+
+<select name="alcohol">
+
+<option>No</option>
+<option>Occasionally</option>
+<option>Frequently</option>
+
+</select>
+
+</div>
+
+<div class="input-box">
+
+<label>Daily Water Intake</label>
+
+<select name="water_intake">
+
+<option>Less than 1L</option>
+<option>1 - 2 Liters</option>
+<option>2 - 3 Liters</option>
+<option>More than 3 Liters</option>
+
+</select>
+
+</div>
+
+<div class="input-box">
+
+<label>Physical Activity</label>
+
+<select name="activity">
+
+<option>Low</option>
+<option>Moderate</option>
+<option>High</option>
+
+</select>
+
+</div>
+
+</div>
+
+<!-- ================================================= -->
+<!-- MEDICAL HISTORY -->
+<!-- ================================================= -->
+
+<h2 class="section-title">
+📋 Medical History
+</h2>
+
+<div class="grid">
+
+<div class="input-box">
+
+<label>Previous Surgeries</label>
+
+<textarea
+name="surgeries"
+placeholder="Enter previous surgeries"></textarea>
+
+</div>
+
+<div class="input-box">
+
+<label>Known Allergies</label>
+
+<textarea
+name="allergies"
+placeholder="Food, medicine, dust etc."></textarea>
+
+</div>
+
+<div class="input-box">
+
+<label>Current Medications</label>
+
+<textarea
+name="medications"
+placeholder="Current medicines"></textarea>
+
+</div>
+
+<div class="input-box">
+
+<label>Chronic Diseases</label>
+
+<textarea
+name="diseases"
+placeholder="Diabetes, Thyroid, Asthma etc."></textarea>
+
+</div>
+
+<div class="input-box">
+
+<label>Family Medical History</label>
+
+<textarea
+name="family_history"
+placeholder="Family disease history"></textarea>
+
+</div>
+
+</div>
+
+<!-- ================================================= -->
+<!-- CLINICAL NOTES -->
+<!-- ================================================= -->
+
+<h2 class="section-title">
+📝 Clinical Notes
+</h2>
+
+<div class="grid">
+
+<div class="input-box">
+
+<label>Doctor / Reception Notes</label>
+
+<textarea
+name="notes"
+placeholder="Additional clinical observations"></textarea>
+
+</div>
+
+</div>
+
+<button type="submit"
+class="btn">
+
+Save Patient Record →
+
+</button>
+
+</form>
+
+</div>
+
+<script>
+
+const heightInput =
+document.getElementById("height");
+
+const weightInput =
+document.getElementById("weight");
+
+const bmiResult =
+document.getElementById("bmiResult");
+
+function calculateBMI(){
+
+    const height =
+    parseFloat(heightInput.value);
+
+    const weight =
+    parseFloat(weightInput.value);
+
+    if(height > 0 && weight > 0){
+
+        const bmi =
+        weight / ((height/100)*(height/100));
+
+        bmiResult.innerHTML =
+        "BMI: " + bmi.toFixed(1);
+
+    }
+}
+
+heightInput.addEventListener(
+"input",
+calculateBMI
+);
+
+weightInput.addEventListener(
+"input",
+calculateBMI
+);
+
+</script>
+
+</body>
+
+</html>

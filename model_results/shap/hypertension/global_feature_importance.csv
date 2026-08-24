@@ -1,0 +1,22 @@
+feature,readable_feature,mean_abs_shap
+numerical__Oxygen_Level,Oxygen Level,3.36794897152754
+numerical__Systolic_BP,Systolic BP,2.8889162033946554
+numerical__Diastolic_BP,Diastolic BP,1.803765562352116
+numerical__BMI,BMI,0.11846752048056931
+numerical__Age,Age,0.11754014118812524
+numerical__Heart_Rate,Heart Rate,0.11198907668082737
+numerical__Cholesterol,Cholesterol,0.0994943870351713
+numerical__Alcohol,Alcohol,0.03420108912622114
+numerical__Family_History,Family History,0.031013975526280806
+categorical__Salt_Intake_Low,Salt Intake Low,0.028796700926947708
+categorical__Gender_Female,Gender Female,0.025196281389045522
+numerical__Smoking,Smoking,0.019963042627975255
+categorical__Stress_Level_High,Stress Level High,0.01843390656463768
+categorical__Salt_Intake_High,Salt Intake High,0.016998484371233465
+categorical__Salt_Intake_Moderate,Salt Intake Moderate,0.01621108266941942
+categorical__Exercise_Moderate,Exercise Moderate,0.015027820292166401
+categorical__Gender_Male,Gender Male,0.014287514545297166
+categorical__Stress_Level_Low,Stress Level Low,0.01297232423064418
+categorical__Stress_Level_Moderate,Stress Level Moderate,0.012761120150674854
+categorical__Exercise_Low,Exercise Low,0.010138598439998654
+categorical__Exercise_High,Exercise High,0.009854345318562935

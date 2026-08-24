@@ -1,0 +1,57 @@
+{
+    "dataset": "heart",
+    "rows": 5000,
+    "columns": 18,
+    "target": "Heart_Disease_Type",
+    "target_classes": [
+        "Arrhythmia",
+        "Coronary Artery Disease",
+        "Heart Failure",
+        "Hypertension",
+        "Valve Disease"
+    ],
+    "duplicate_rows": 0,
+    "missing_values": 147,
+    "top_mutual_information_features": [
+        {
+            "feature": "Troponin",
+            "mutual_information": 0.18276630638978952
+        },
+        {
+            "feature": "Heart_Rate",
+            "mutual_information": 0.17863335579991135
+        },
+        {
+            "feature": "Breathlessness",
+            "mutual_information": 0.08306148833587601
+        },
+        {
+            "feature": "Chest_Pain",
+            "mutual_information": 0.08202959992079073
+        },
+        {
+            "feature": "Systolic_BP",
+            "mutual_information": 0.07775816102791966
+        },
+        {
+            "feature": "Dizziness",
+            "mutual_information": 0.06496052026027721
+        },
+        {
+            "feature": "Diastolic_BP",
+            "mutual_information": 0.048769466417790674
+        },
+        {
+            "feature": "LDL",
+            "mutual_information": 0.04110705644852786
+        },
+        {
+            "feature": "Smoking",
+            "mutual_information": 0.014339531022799168
+        },
+        {
+            "feature": "ECG",
+            "mutual_information": 0.010649763578834584
+        }
+    ]
+}

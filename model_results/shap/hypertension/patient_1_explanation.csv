@@ -1,0 +1,22 @@
+feature,readable_feature,model_input_value,shap_value,absolute_shap,direction
+numerical__Oxygen_Level,Oxygen Level,-1.0086485060672534,14.18075250713177,14.18075250713177,Supports prediction
+numerical__Systolic_BP,Systolic BP,-0.457726374635518,0.7137788822661673,0.7137788822661673,Supports prediction
+numerical__Diastolic_BP,Diastolic BP,-0.6109210940683245,0.2318267868448353,0.2318267868448353,Supports prediction
+numerical__BMI,BMI,-1.1238853003463511,0.04949201005008992,0.04949201005008992,Supports prediction
+numerical__Heart_Rate,Heart Rate,0.2815541172492905,0.019919224599889925,0.019919224599889925,Supports prediction
+numerical__Age,Age,0.2462325652189828,0.01010176232531686,0.01010176232531686,Supports prediction
+categorical__Exercise_High,Exercise High,0.0,0.005871228291538926,0.005871228291538926,Supports prediction
+categorical__Stress_Level_High,Stress Level High,0.0,-0.00516907927324816,0.00516907927324816,Opposes prediction
+categorical__Salt_Intake_Moderate,Salt Intake Moderate,0.0,0.004297760075564842,0.004297760075564842,Supports prediction
+numerical__Alcohol,Alcohol,-1.0010005005003753,-0.003375807096509474,0.003375807096509474,Opposes prediction
+categorical__Salt_Intake_High,Salt Intake High,0.0,0.002463519177416644,0.002463519177416644,Supports prediction
+numerical__Cholesterol,Cholesterol,-1.1228217501280295,-0.0019808409291024696,0.0019808409291024696,Opposes prediction
+categorical__Stress_Level_Moderate,Stress Level Moderate,1.0,-0.0017715040235093216,0.0017715040235093216,Opposes prediction
+categorical__Exercise_Low,Exercise Low,0.0,-0.001336889299872187,0.001336889299872187,Opposes prediction
+categorical__Stress_Level_Low,Stress Level Low,0.0,0.0013086754294344364,0.0013086754294344364,Supports prediction
+numerical__Family_History,Family History,-1.0232706909013507,0.001150685870549476,0.001150685870549476,Supports prediction
+numerical__Smoking,Smoking,-1.030463813097332,-0.0010750546260577508,0.0010750546260577508,Opposes prediction
+categorical__Gender_Female,Gender Female,1.0,-0.0009257093426937122,0.0009257093426937122,Opposes prediction
+categorical__Gender_Male,Gender Male,0.0,0.0005944623951615016,0.0005944623951615016,Supports prediction
+categorical__Salt_Intake_Low,Salt Intake Low,1.0,0.0002402893495349232,0.0002402893495349232,Supports prediction
+categorical__Exercise_Moderate,Exercise Moderate,1.0,-9.367452818984665e-05,9.367452818984665e-05,Opposes prediction

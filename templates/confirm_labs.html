@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Confirm lab values</title>
+<style>
+body{font-family:Outfit,sans-serif;background:#020617;color:#f8fafc;padding:32px;}
+.wrap{max-width:880px;margin:0 auto;background:#0f172a;padding:28px;border-radius:20px;border:1px solid rgba(255,255,255,.08);}
+h1{color:#38bdf8;margin-bottom:8px;}
+p{color:#94a3b8;line-height:1.5;}
+.error{background:rgba(239,68,68,.15);border:1px solid #ef4444;padding:12px 16px;border-radius:12px;margin:16px 0;color:#fecaca;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;}
+label{font-size:.85rem;color:#94a3b8;display:block;margin-bottom:4px;}
+input{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:#fff;}
+button{margin-top:20px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border:0;color:#fff;padding:14px 22px;border-radius:12px;font-weight:700;cursor:pointer;}
+.warn{color:#fbbf24;font-size:.9rem;margin-top:12px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Confirm extracted labs</h1>
+<p>OCR values must be reviewed before they enter the model. Empty, invalid, or out-of-range fields will block prediction.</p>
+{% if errors %}
+<div class="error">
+<strong>⚠ Missing or invalid information</strong>
+<ul>{% for e in errors %}<li>{{ e }}</li>{% endfor %}</ul>
+</div>
+{% endif %}
+{% if embedded_dx %}
+<p>Report diagnosis line (not used as a silent override after confirm): <strong style="color:#fff;">{{ embedded_dx }}</strong></p>
+{% endif %}
+<form method="POST" action="/confirm_labs/{{ patient.name }}">
+<input type="hidden" name="report_filename" value="{{ report_filename }}">
+<div class="grid">
+{% for key in field_keys %}
+<div>
+<label>{{ key | replace('_',' ') }}</label>
+<input name="lab_{{ key }}" value="{{ parameters.get(key, '') }}">
+</div>
+{% endfor %}
+</div>
+<p class="warn">Educational demo only. Confirmed values still need a clinician.</p>
+<button type="submit">Confirm and run AI prediction</button>
+</form>
+</div>
+</body>
+</html>

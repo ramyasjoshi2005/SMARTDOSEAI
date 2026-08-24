@@ -1,0 +1,20 @@
+feature,readable_feature,model_input_value,shap_value,absolute_shap,direction
+numerical__Dizziness,Dizziness,-0.8033762568804808,0.21202628372695898,0.21202628372695898,Supports prediction
+numerical__Breathlessness,Breathlessness,-0.9945150421537696,0.20730625328368604,0.20730625328368604,Supports prediction
+numerical__Chest_Pain,Chest Pain,0.8250286473253902,0.13477790362035283,0.13477790362035283,Supports prediction
+numerical__Troponin,Troponin,0.9397627572223778,0.0616116676612768,0.0616116676612768,Supports prediction
+categorical__ECG_Abnormal,ECG Abnormal,1.0,0.05042582599589367,0.05042582599589367,Supports prediction
+categorical__ECG_Normal,ECG Normal,0.0,0.04615448907152732,0.04615448907152732,Supports prediction
+numerical__Cholesterol,Cholesterol,-1.261682330692226,-0.007574022444374206,0.007574022444374206,Opposes prediction
+numerical__LDL,LDL,-0.1950519749250045,0.0060369635462780786,0.0060369635462780786,Supports prediction
+numerical__Age,Age,-0.7148931160948649,-0.005078227467625851,0.005078227467625851,Opposes prediction
+numerical__Triglycerides,Triglycerides,0.4552039521830259,0.003980763147395656,0.003980763147395656,Supports prediction
+categorical__Gender_Female,Gender Female,1.0,0.002460373923671449,0.002460373923671449,Supports prediction
+numerical__Systolic_BP,Systolic BP,-1.4237856341915518,-0.0017684866478459513,0.0017684866478459513,Opposes prediction
+numerical__Heart_Rate,Heart Rate,-0.7913776413113073,-0.0016716949280236148,0.0016716949280236148,Opposes prediction
+numerical__HDL,HDL,0.1873997666714855,0.001371217255675348,0.001371217255675348,Supports prediction
+numerical__Diastolic_BP,Diastolic BP,-1.2492723745394314,-0.0013477205128064223,0.0013477205128064223,Opposes prediction
+numerical__Family_History,Family History,0.997503117202112,-0.0010405714991647435,0.0010405714991647435,Opposes prediction
+numerical__Smoking,Smoking,1.0299482537783646,-0.0009905651638592572,0.0009905651638592572,Opposes prediction
+categorical__Gender_Male,Gender Male,0.0,0.0003941349432066481,0.0003941349432066481,Supports prediction
+numerical__Obesity,Obesity,-1.0065212629862732,-0.00029384005568026863,0.00029384005568026863,Opposes prediction

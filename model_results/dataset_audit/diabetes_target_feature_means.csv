@@ -1,0 +1,5 @@
+Diabetes_Type,Age,BMI,Fasting_Glucose,Random_Glucose,Post_Meal_Glucose,HbA1c,Insulin,Cholesterol,Triglycerides,Systolic_BP,Diastolic_BP,Pregnancy,Family_History,Excessive_Thirst,Frequent_Urination,Blurred_Vision,Water_Intake
+Gestational Diabetes,51.336,30.101,149.889,224.654,253.537,7.176,95.47,220.3,179.983,147.31,92.877,0.907,0.499,0.364,0.333,0.2,2.74
+Prediabetes,50.2,27.93,125.468,174.324,195.434,6.091,85.316,219.1,182.538,147.743,92.754,0.042,0.512,0.298,0.269,0.157,2.667
+Type 1 Diabetes,51.984,23.976,189.728,285.724,310.184,8.838,45.179,219.535,180.367,147.795,93.537,0.064,0.501,0.436,0.464,0.259,2.953
+Type 2 Diabetes,52.062,31.204,175.933,258.076,286.019,7.965,105.471,219.688,179.584,146.598,91.754,0.063,0.495,0.416,0.399,0.245,2.902

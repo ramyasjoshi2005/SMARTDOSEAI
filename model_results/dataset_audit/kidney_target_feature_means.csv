@@ -1,0 +1,6 @@
+Kidney_Disease_Type,Age,Creatinine,Blood_Urea,eGFR,Potassium,Sodium,Calcium,Uric_Acid,Hemoglobin,Diabetes,Hypertension,Swelling,Fatigue,Appetite_Loss
+Acute Kidney Injury,53.874,4.618,103.727,35.444,5.502,137.992,9.176,7.421,11.114,0.404,0.486,0.586,0.615,0.452
+Chronic Kidney Disease,54.741,5.063,115.342,28.6,5.569,138.216,9.169,8.002,11.295,0.584,0.703,0.609,0.604,0.47
+Diabetic Nephropathy,54.148,4.693,107.866,32.922,5.514,138.135,9.162,8.297,11.19,0.801,0.693,0.584,0.626,0.452
+Glomerulonephritis,52.831,3.777,96.485,44.688,5.202,138.088,9.178,7.307,11.291,0.292,0.535,0.547,0.565,0.406
+Kidney Stones,54.03,2.473,64.849,64.045,4.772,138.157,9.21,8.145,11.294,0.199,0.342,0.429,0.489,0.346

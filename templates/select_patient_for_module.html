@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Patient - {{ module_name }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-dark: #0f172a; --bg-card: #1e293b; --text-light: #f8fafc; --text-muted: #94a3b8; --accent-blue: #38bdf8; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--bg-dark); color: var(--text-light); padding: 40px; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .header h1 { font-size: 2.5rem; color: var(--accent-blue); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .card { background: var(--bg-card); padding: 30px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); text-align: center; transition: transform 0.2s; text-decoration: none; color: inherit; display: block; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-color: var(--accent-blue); }
+        .card h2 { margin-bottom: 10px; }
+        .btn { display: inline-block; background: var(--accent-blue); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Select a Patient</h1>
+        <p>Choose a patient to open their {{ module_name }}</p>
+    </div>
+    <div class="grid">
+        {% for patient in patients %}
+        <a href="/{{ module_url }}/{{ patient.name }}" class="card">
+            <h2>{{ patient.name }}</h2>
+            <p style="color: var(--text-muted);">Age: {{ patient.age }} | Gender: {{ patient.gender }}</p>
+            <div class="btn">Open {{ module_name }}</div>
+        </a>
+        {% else %}
+        <div style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">
+            <h2>No patients found.</h2>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

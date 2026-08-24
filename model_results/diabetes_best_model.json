@@ -1,0 +1,7 @@
+{
+    "dataset": "diabetes",
+    "target": "Diabetes_Type",
+    "best_model": "LightGBM",
+    "accuracy": 0.874,
+    "f1_score": 0.8731
+}

@@ -1,0 +1,57 @@
+{
+    "dataset": "kidney",
+    "rows": 5000,
+    "columns": 18,
+    "target": "Kidney_Disease_Type",
+    "target_classes": [
+        "Acute Kidney Injury",
+        "Chronic Kidney Disease",
+        "Diabetic Nephropathy",
+        "Glomerulonephritis",
+        "Kidney Stones"
+    ],
+    "duplicate_rows": 0,
+    "missing_values": 149,
+    "top_mutual_information_features": [
+        {
+            "feature": "eGFR",
+            "mutual_information": 0.16503012280883578
+        },
+        {
+            "feature": "Dialysis_Risk",
+            "mutual_information": 0.15296065819073718
+        },
+        {
+            "feature": "Creatinine",
+            "mutual_information": 0.14229788058741022
+        },
+        {
+            "feature": "Urine_Protein",
+            "mutual_information": 0.12510287852749813
+        },
+        {
+            "feature": "Diabetes",
+            "mutual_information": 0.10889256342890796
+        },
+        {
+            "feature": "Blood_Urea",
+            "mutual_information": 0.10581256742114453
+        },
+        {
+            "feature": "Potassium",
+            "mutual_information": 0.07121329382353192
+        },
+        {
+            "feature": "Hypertension",
+            "mutual_information": 0.04085063122602772
+        },
+        {
+            "feature": "Uric_Acid",
+            "mutual_information": 0.03144000698750071
+        },
+        {
+            "feature": "Fatigue",
+            "mutual_information": 0.021842433714907017
+        }
+    ]
+}

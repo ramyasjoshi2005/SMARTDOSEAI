@@ -1,0 +1,7 @@
+{
+    "dataset": "hypertension",
+    "target": "Hypertension_Type",
+    "best_model": "RandomForest",
+    "accuracy": 0.481,
+    "f1_score": 0.4643
+}

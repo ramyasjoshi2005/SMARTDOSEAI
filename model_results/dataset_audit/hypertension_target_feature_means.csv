@@ -1,0 +1,5 @@
+Hypertension_Type,Age,Systolic_BP,Diastolic_BP,BMI,Smoking,Alcohol,Family_History,Cholesterol,Oxygen_Level,Heart_Rate
+Primary Hypertension,54.489,158.048,98.917,29.49,0.457,0.457,0.534,221.168,95.886,100.027
+Pulmonary Hypertension,54.557,168.243,105.017,29.658,0.442,0.438,0.513,220.854,90.876,99.746
+Resistant Hypertension,55.18,181.251,113.868,29.595,0.435,0.437,0.51,221.102,92.962,100.051
+Secondary Hypertension,55.407,174.304,107.612,29.53,0.461,0.448,0.501,220.079,93.844,99.095

@@ -1,0 +1,56 @@
+{
+    "dataset": "hypertension",
+    "rows": 5000,
+    "columns": 15,
+    "target": "Hypertension_Type",
+    "target_classes": [
+        "Primary Hypertension",
+        "Pulmonary Hypertension",
+        "Resistant Hypertension",
+        "Secondary Hypertension"
+    ],
+    "duplicate_rows": 0,
+    "missing_values": 0,
+    "top_mutual_information_features": [
+        {
+            "feature": "Oxygen_Level",
+            "mutual_information": 0.12393625798839958
+        },
+        {
+            "feature": "Diastolic_BP",
+            "mutual_information": 0.09796595892142124
+        },
+        {
+            "feature": "Systolic_BP",
+            "mutual_information": 0.08021288813222949
+        },
+        {
+            "feature": "Alcohol",
+            "mutual_information": 0.016197165231067068
+        },
+        {
+            "feature": "Age",
+            "mutual_information": 0.0021616008722675772
+        },
+        {
+            "feature": "Stress_Level",
+            "mutual_information": 0.0010770569919006656
+        },
+        {
+            "feature": "Salt_Intake",
+            "mutual_information": 0.0009390889254233259
+        },
+        {
+            "feature": "Exercise",
+            "mutual_information": 0.0007523169951606234
+        },
+        {
+            "feature": "Gender",
+            "mutual_information": 0.0004520292232231826
+        },
+        {
+            "feature": "BMI",
+            "mutual_information": 0.0
+        }
+    ]
+}

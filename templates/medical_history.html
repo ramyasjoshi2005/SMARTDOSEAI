@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Reception Medical Records</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins;
+}
+
+body{
+
+    background:
+    linear-gradient(rgba(5,10,25,0.94),
+    rgba(5,10,25,0.96)),
+    url('https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=2070');
+
+    background-size:cover;
+    background-position:center;
+
+    min-height:100vh;
+
+    padding:30px;
+
+    color:white;
+}
+
+.top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+}
+
+h1{
+
+    color:#00d4ff;
+
+    font-size:48px;
+}
+
+.back-btn{
+
+    text-decoration:none;
+
+    background:
+    linear-gradient(90deg,#00d4ff,#007bff);
+
+    color:white;
+
+    padding:14px 24px;
+
+    border-radius:14px;
+
+    font-weight:bold;
+}
+
+.table-container{
+
+    overflow-x:auto;
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:
+    rgba(255,255,255,0.06);
+
+    border-radius:22px;
+
+    overflow:hidden;
+}
+
+th,
+td{
+
+    padding:18px;
+
+    border:
+    1px solid rgba(255,255,255,0.08);
+
+    text-align:left;
+
+    vertical-align:top;
+}
+
+th{
+
+    background:#00d4ff;
+
+    color:black;
+}
+
+td{
+
+    background:
+    rgba(255,255,255,0.03);
+
+    color:white;
+}
+
+.status{
+
+    color:#00ffcc;
+
+    font-weight:bold;
+}
+
+.view-btn{
+
+    text-decoration:none;
+
+    background:
+    linear-gradient(90deg,#00d4ff,#007bff);
+
+    color:white;
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    font-weight:bold;
+
+    display:inline-block;
+}
+
+.delete-btn{
+
+    text-decoration:none;
+
+    background:#ff4d4d;
+
+    color:white;
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    font-weight:bold;
+
+    display:inline-block;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="top">
+
+<h1>
+📋 Reception Medical Records
+</h1>
+
+<a href="/reception_dashboard"
+class="back-btn">
+
+← Back to Reception Dashboard
+
+</a>
+
+</div>
+
+<div class="table-container">
+
+<table>
+
+<tr>
+
+<th>Name</th>
+
+<th>Age</th>
+
+<th>Gender</th>
+
+<th>Phone</th>
+
+<th>Appointment Date</th>
+
+<th>Appointment Time</th>
+
+<th>Assigned Doctor</th>
+
+<th>Reason of Visit</th>
+
+<th>Symptoms</th>
+
+<th>Diseases</th>
+
+<th>Status</th>
+
+<th>View Record</th>
+
+<th>Delete</th>
+
+</tr>
+
+{% for patient in patients %}
+
+<tr>
+
+<td>
+{{ patient.name }}
+</td>
+
+<td>
+{{ patient.age }}
+</td>
+
+<td>
+{{ patient.gender }}
+</td>
+
+<td>
+{{ patient.phone }}
+</td>
+
+<td>
+{{ patient.appointment_date }}
+</td>
+
+<td>
+{{ patient.appointment_time }}
+</td>
+
+<td>
+{{ patient.assigned_doctor }}
+</td>
+
+<td>
+{{ patient.reason_visit }}
+</td>
+
+<td>
+{{ patient.symptoms }}
+</td>
+
+<td>
+{{ patient.diseases }}
+</td>
+
+<td class="status">
+{{ patient.diagnosis_status }}
+</td>
+
+<td>
+
+<a href="/patient_details/{{ patient.name }}"
+class="view-btn">
+
+Open Record →
+
+</a>
+
+</td>
+
+<td>
+
+<a
+
+href="/delete_patient/{{ patient.name }}"
+
+class="delete-btn"
+
+onclick="return confirm('Delete Patient Record?')"
+
+>
+
+🗑 Delete
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+
+</html>

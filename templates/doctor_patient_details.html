@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Doctor Patient Record</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins;
+}
+
+body{
+
+background:
+linear-gradient(rgba(5,10,25,0.92),
+rgba(5,10,25,0.96)),
+url('https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=2070');
+
+background-size:cover;
+background-position:center;
+
+min-height:100vh;
+
+padding:30px;
+
+color:white;
+}
+
+.container{
+
+background:rgba(255,255,255,0.08);
+
+backdrop-filter:blur(12px);
+
+border-radius:25px;
+
+padding:30px;
+}
+
+.top{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:30px;
+}
+
+h1{
+
+font-size:52px;
+
+color:#00d4ff;
+}
+
+.back-btn{
+
+text-decoration:none;
+
+background:
+linear-gradient(90deg,#00d4ff,#007bff);
+
+padding:14px 24px;
+
+border-radius:14px;
+
+color:white;
+
+font-weight:bold;
+}
+
+.section-title{
+
+font-size:34px;
+
+margin-top:35px;
+
+margin-bottom:20px;
+
+color:#00d4ff;
+}
+
+.grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+gap:20px;
+}
+
+.card{
+
+background:
+rgba(255,255,255,0.06);
+
+padding:22px;
+
+border-radius:18px;
+
+border:
+1px solid rgba(255,255,255,0.08);
+}
+
+.card h3{
+
+color:#00d4ff;
+
+margin-bottom:12px;
+}
+
+.symptoms{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:12px;
+}
+
+.badge{
+
+background:
+rgba(0,212,255,0.15);
+
+border:
+1px solid #00d4ff;
+
+padding:10px 18px;
+
+border-radius:30px;
+
+color:#00d4ff;
+
+font-weight:bold;
+}
+
+.start-btn{
+
+text-decoration:none;
+
+background:
+linear-gradient(90deg,#00d4ff,#007bff);
+
+padding:14px 24px;
+
+border-radius:12px;
+
+color:white;
+
+font-weight:bold;
+
+display:inline-block;
+
+margin-top:25px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="top">
+
+<h1>🧑‍⚕️ Doctor Patient Record</h1>
+
+<a href="/doctor_dashboard/{{ patient.assigned_doctor }}"
+class="back-btn">
+
+← Back to Dashboard
+
+</a>
+
+</div>
+
+<h2 class="section-title">
+
+🧑 Personal Information
+
+</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Name</h3>
+<p>{{ patient.name }}</p>
+</div>
+
+<div class="card">
+<h3>Age</h3>
+<p>{{ patient.age }}</p>
+</div>
+
+<div class="card">
+<h3>Gender</h3>
+<p>{{ patient.gender }}</p>
+</div>
+
+<div class="card">
+<h3>Phone</h3>
+<p>{{ patient.phone }}</p>
+</div>
+
+<div class="card">
+<h3>Email</h3>
+<p>{{ patient.email }}</p>
+</div>
+
+<div class="card">
+<h3>Emergency Contact</h3>
+<p>{{ patient.emergency_contact }}</p>
+</div>
+
+<div class="card">
+<h3>Address</h3>
+<p>{{ patient.address }}</p>
+</div>
+
+<div class="card">
+<h3>Blood Group</h3>
+<p>{{ patient.blood_group }}</p>
+</div>
+
+</div>
+
+<h2 class="section-title">
+
+🩺 Symptoms
+
+</h2>
+
+<div class="symptoms">
+
+{% for symptom in patient.symptoms.split(',') %}
+
+<div class="badge">
+
+{{ symptom.strip() }}
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<h2 class="section-title">
+
+📋 Medical History
+
+</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Diseases</h3>
+<p>{{ patient.diseases }}</p>
+</div>
+
+<div class="card">
+<h3>Allergies</h3>
+<p>{{ patient.allergies }}</p>
+</div>
+
+<div class="card">
+<h3>Medications</h3>
+<p>{{ patient.medications }}</p>
+</div>
+
+<div class="card">
+<h3>Surgeries</h3>
+<p>{{ patient.surgeries }}</p>
+</div>
+
+<div class="card">
+<h3>Family History</h3>
+<p>{{ patient.family_history }}</p>
+</div>
+
+</div>
+
+<h2 class="section-title">📅 Appointment History & Lab Reports</h2>
+
+{% for appointment in patient.appointments %}
+<div class="card" style="margin-bottom: 20px;">
+    <h3 style="color: white;">Appointment: {{ appointment.appointment_date }} at {{ appointment.appointment_time }}</h3>
+    <p style="color: {% if appointment.status == 'Completed' %}#00ff99{% else %}#f59e0b{% endif %}; font-weight: bold; margin-bottom: 15px;">
+        Status: {{ appointment.status }}
+    </p>
+
+    {% if appointment.lab_reports %}
+    <h4 style="color: #00d4ff; margin-bottom: 10px;">Uploaded Lab Reports:</h4>
+    <ul style="list-style-type: none; margin-bottom: 15px;">
+        {% for report in appointment.lab_reports %}
+        <li style="margin-bottom: 8px;">
+            <a href="/uploads/{{ report | lab_filename }}" target="_blank" style="color: #00ff99; text-decoration: none;">📄 {{ report | lab_filename }}</a>
+            {% if report | lab_uploaded_at %}
+            <span style="color: #94a3b8; font-size: 0.9rem;"> · uploaded {{ report | lab_uploaded_at }}</span>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p style="color: #94a3b8; margin-bottom: 15px;">No Lab Reports Uploaded</p>
+    {% endif %}
+
+    <p style="color: #94a3b8; margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.95rem;">
+        Lab reports are added by <strong style="color:#00d4ff;">reception</strong> from Medical History. Ask reception to upload PDFs there; they will appear here automatically.
+    </p>
+</div>
+{% endfor %}
+
+<a
+
+href="/diagnosis/{{ patient.name | urlencode }}"
+
+class="start-btn"
+
+>
+
+Start Diagnosis →
+
+</a>
+
+</div>
+
+</body>
+
+</html>

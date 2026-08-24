@@ -1,0 +1,4 @@
+Dialysis_Risk,Age,Creatinine,Blood_Urea,eGFR,Potassium,Sodium,Calcium,Uric_Acid,Hemoglobin,Diabetes,Hypertension,Swelling,Fatigue,Appetite_Loss
+High,53.587,5.287,113.378,24.195,5.614,138.096,9.159,7.845,11.192,0.552,0.616,0.723,0.738,0.499
+Low,54.02,2.57,73.177,66.806,4.901,138.137,9.203,7.906,11.206,0.288,0.427,0.35,0.411,0.336
+Medium,53.999,4.136,98.944,39.851,5.314,138.118,9.18,7.782,11.269,0.461,0.562,0.545,0.569,0.423

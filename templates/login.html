@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+    <title>SmartDoseAI Login</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+
+            background:
+            linear-gradient(rgba(5,10,25,0.88),
+            rgba(5,10,25,0.94)),
+            url('https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=2070');
+
+            background-size:cover;
+            background-position:center;
+
+            min-height:100vh;
+
+            display:flex;
+
+            justify-content:center;
+
+            align-items:center;
+
+            color:white;
+        }
+
+        .login-container{
+
+            width:720px;
+
+            background:rgba(255,255,255,0.08);
+
+            backdrop-filter:blur(18px);
+
+            border-radius:35px;
+
+            padding:60px;
+
+            border:1px solid rgba(255,255,255,0.08);
+
+            box-shadow:0 0 35px rgba(0,0,0,0.4);
+
+            text-align:center;
+        }
+
+        .logo{
+
+            font-size:90px;
+
+            margin-bottom:15px;
+        }
+
+        h1{
+
+            color:#00d4ff;
+
+            font-size:58px;
+
+            margin-bottom:15px;
+        }
+
+        .subtitle{
+
+            color:#ddd;
+
+            font-size:20px;
+
+            margin-bottom:45px;
+
+            line-height:1.8;
+        }
+
+        .form-group{
+
+            text-align:left;
+
+            margin-bottom:25px;
+        }
+
+        label{
+
+            display:block;
+
+            margin-bottom:10px;
+
+            font-size:17px;
+
+            font-weight:600;
+        }
+
+        input,
+        select{
+
+            width:100%;
+
+            padding:18px;
+
+            border:none;
+
+            border-radius:16px;
+
+            background:rgba(255,255,255,0.10);
+
+            color:white;
+
+            font-size:16px;
+
+            outline:none;
+        }
+
+        input::placeholder{
+
+            color:#ddd;
+        }
+
+        select option{
+
+            background:#1e293b;
+
+            color:white;
+        }
+
+        .btn{
+
+            width:100%;
+
+            margin-top:20px;
+
+            padding:18px;
+
+            border:none;
+
+            border-radius:18px;
+
+            background:
+            linear-gradient(90deg,#00d4ff,#007bff);
+
+            color:white;
+
+            font-size:22px;
+
+            font-weight:bold;
+
+            cursor:pointer;
+        }
+
+        .footer{
+
+            margin-top:35px;
+
+            color:#bbb;
+
+            font-size:15px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <div class="logo">
+
+            🏥
+
+        </div>
+
+        <h1>
+            SmartDoseAI
+        </h1>
+
+        <p class="subtitle">
+
+            AI Smart Dose Recommendation &
+            Digital Twin Healthcare Platform
+
+        </p>
+
+        <form action="/login" method="POST">
+
+            <div class="form-group">
+
+                <label>Select Role</label>
+
+                <select name="role">
+
+                    <option value="reception">
+
+                        Reception Staff
+
+                    </option>
+
+                    <option value="doctor">
+
+                        Doctor
+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Username</label>
+
+                <input type="text"
+                name="username"
+                placeholder="Enter username">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Password</label>
+
+                <input type="password"
+                name="password"
+                placeholder="Enter password">
+
+            </div>
+
+            <button class="btn"
+            type="submit">
+
+                Login →
+
+            </button>
+
+        </form>
+
+        <div class="footer">
+
+            Secure Clinical Access •
+            Authorized Hospital Staff Only
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

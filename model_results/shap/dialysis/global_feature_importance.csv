@@ -1,0 +1,22 @@
+feature,readable_feature,mean_abs_shap
+numerical__Creatinine,Creatinine,0.11929547489407585
+numerical__eGFR,eGFR,0.1004115344002563
+numerical__Blood_Urea,Blood Urea,0.07994059588945295
+numerical__Potassium,Potassium,0.042776082704210655
+numerical__Uric_Acid,Uric Acid,0.025153351066241177
+numerical__Age,Age,0.01436135727801442
+numerical__Hemoglobin,Hemoglobin,0.009919571789686946
+numerical__Sodium,Sodium,0.004618675539262436
+numerical__Calcium,Calcium,0.004599406650253942
+numerical__Fatigue,Fatigue,0.0036260197858119735
+categorical__Urine_Protein_Trace,Urine Protein Trace,0.001946230290846964
+numerical__Swelling,Swelling,0.001612625805219708
+numerical__Appetite_Loss,Appetite Loss,0.0014371065977371504
+numerical__Diabetes,Diabetes,0.0013447573950093425
+categorical__Gender_Female,Gender Female,0.0013142049883422358
+numerical__Hypertension,Hypertension,0.0012874720776289645
+categorical__Gender_Male,Gender Male,0.001266645676007505
+categorical__Urine_Protein_Negative,Urine Protein Negative,0.001134792309302538
+categorical__Urine_Protein_+2,Urine Protein +2,0.0010555983155431288
+categorical__Urine_Protein_+1,Urine Protein +1,0.0009141795580577609
+categorical__Urine_Protein_+3,Urine Protein +3,0.000871293690167728

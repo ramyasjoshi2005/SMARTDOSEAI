@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ML Results</title>
+<style>
+body{font-family:Outfit,sans-serif;background:#020617;color:#f8fafc;padding:32px;}
+h1{background:linear-gradient(90deg,#3b82f6,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+table{width:100%;border-collapse:collapse;margin:18px 0;background:#0f172a;}
+th,td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.08);text-align:left;}
+th{color:#94a3b8;font-size:.85rem;}
+.card{background:#0f172a;padding:20px;border-radius:16px;margin:20px 0;}
+a{color:#38bdf8;}
+</style>
+</head>
+<body>
+<p><a href="/doctor_dashboard">← Doctor dashboard</a></p>
+<h1>Model performance</h1>
+<p style="color:#94a3b8;">Offline training metrics. Accuracy is not medical certainty.</p>
+<table>
+<tr><th>Model</th><th>Best algorithm</th><th>Accuracy</th><th>Macro F1</th><th>ROC-AUC</th></tr>
+{% for row in performance %}
+<tr>
+<td>{{ row.dataset }}</td>
+<td>{{ row.best_model }}</td>
+<td>{{ row.accuracy }}</td>
+<td>{{ row.f1 }}</td>
+<td>{{ row.roc_auc }}</td>
+</tr>
+{% endfor %}
+</table>
+{% for name, rows in shap_tables.items() %}
+<div class="card">
+<h3>{{ name | title }} — global SHAP importance</h3>
+<table>
+<tr><th>Feature</th><th>Mean |SHAP|</th></tr>
+{% for item in rows %}
+<tr><td>{{ item.feature }}</td><td>{{ item.mean_abs_shap }}</td></tr>
+{% else %}
+<tr><td colspan="2">No SHAP CSV yet. Run explainability.py.</td></tr>
+{% endfor %}
+</table>
+</div>
+{% endfor %}
+</body>
+</html>

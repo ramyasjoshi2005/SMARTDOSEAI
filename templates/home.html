@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>SmartDoseAI Dashboard</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+
+            background:
+            linear-gradient(rgba(8,15,40,0.85),rgba(8,15,40,0.92)),
+            url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2070');
+
+            background-size:cover;
+            background-position:center;
+
+            min-height:100vh;
+
+            padding:40px;
+
+            color:white;
+        }
+
+        .top-bar{
+
+            display:flex;
+
+            justify-content:space-between;
+
+            align-items:center;
+
+            margin-bottom:40px;
+        }
+
+        .title h1{
+
+            font-size:42px;
+
+            color:#00d4ff;
+        }
+
+        .title p{
+
+            margin-top:10px;
+
+            color:#d9d9d9;
+
+            font-size:18px;
+        }
+
+        .status-box{
+
+            background:rgba(255,255,255,0.08);
+
+            padding:18px 25px;
+
+            border-radius:18px;
+
+            backdrop-filter:blur(12px);
+
+            border:1px solid rgba(255,255,255,0.1);
+        }
+
+        .dashboard{
+
+            display:grid;
+
+            grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+            gap:30px;
+        }
+
+        .card{
+
+            background:rgba(255,255,255,0.08);
+
+            border-radius:25px;
+
+            padding:35px;
+
+            backdrop-filter:blur(15px);
+
+            border:1px solid rgba(255,255,255,0.1);
+
+            transition:0.4s;
+
+            cursor:pointer;
+
+            text-decoration:none;
+
+            color:white;
+
+            box-shadow:0 8px 25px rgba(0,0,0,0.25);
+        }
+
+        .card:hover{
+
+            transform:translateY(-8px) scale(1.02);
+
+            box-shadow:0 0 25px rgba(0,212,255,0.4);
+        }
+
+        .icon{
+
+            font-size:55px;
+
+            margin-bottom:20px;
+        }
+
+        .card h2{
+
+            margin-bottom:12px;
+
+            color:#00d4ff;
+
+            font-size:26px;
+        }
+
+        .card p{
+
+            color:#ddd;
+
+            line-height:1.6;
+
+            font-size:15px;
+        }
+
+        .footer{
+
+            margin-top:50px;
+
+            text-align:center;
+
+            color:#aaa;
+
+            font-size:15px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="top-bar">
+
+        <div class="title">
+
+            <h1>🏥 SmartDoseAI</h1>
+
+            <p>
+                AI Smart Dose Recommendation & Digital Twin Healthcare Platform
+            </p>
+
+        </div>
+
+        <div class="status-box">
+
+            🟢 System Active
+
+        </div>
+
+    </div>
+
+    <div class="dashboard">
+
+        <a href="/patient" class="card">
+
+            <div class="icon">🧾</div>
+
+            <h2>Patient Registration</h2>
+
+            <p>
+                Register patient details, symptoms,
+                lifestyle information and clinical history.
+            </p>
+
+        </a>
+
+        <a href="/history" class="card">
+
+            <div class="icon">📋</div>
+
+            <h2>Medical History</h2>
+
+            <p>
+                Analyze previous medical conditions,
+                medications and patient records.
+            </p>
+
+        </a>
+
+        <a href="/diagnosis" class="card">
+
+            <div class="icon">🩸</div>
+
+            <h2>Lab Report Analysis</h2>
+
+            <p>
+                Analyze blood reports, kidney parameters,
+                cholesterol levels and glucose values.
+            </p>
+
+        </a>
+
+        <a href="/ai_diagnosis" class="card">
+
+            <div class="icon">🤖</div>
+
+            <h2>AI Diagnosis</h2>
+
+            <p>
+                Predict disease risks including diabetes,
+                hypertension, kidney disease and heart risk.
+            </p>
+
+        </a>
+
+        <a href="/digital_twin" class="card">
+
+            <div class="icon">🧬</div>
+
+            <h2>Digital Twin</h2>
+
+            <p>
+                Simulate treatment response and visualize
+                patient improvement after dosage changes.
+            </p>
+
+        </a>
+
+        <a href="/dose" class="card">
+
+            <div class="icon">💊</div>
+
+            <h2>Smart Dose Recommendation</h2>
+
+            <p>
+                Recommend the safest and most effective
+                medicine dosage using AI simulations.
+            </p>
+
+        </a>
+
+        <a href="/report" class="card">
+
+            <div class="icon">📄</div>
+
+            <h2>Medical Reports</h2>
+
+            <p>
+                Generate AI-powered medical reports
+                with dosage and clinical recommendations.
+            </p>
+
+        </a>
+
+    </div>
+
+    <div class="footer">
+
+        © 2026 SmartDoseAI | AI Healthcare Platform
+
+    </div>
+
+</body>
+
+</html>

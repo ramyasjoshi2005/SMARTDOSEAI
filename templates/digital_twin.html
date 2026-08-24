@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Digital Twin Simulation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #020617;
+            --bg-card: #0f172a;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-blue: #3b82f6;
+            --success-green: #10b981;
+            --alert-red: #ef4444;
+            --alert-yellow: #f59e0b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body { background: var(--bg-dark); color: var(--text-light); padding: 20px; }
+        .header { text-align: center; margin-bottom: 20px; }
+        .header h1 { font-size: 2.5rem; color: var(--accent-blue); }
+        
+        .twin-container { display: grid; grid-template-columns: 300px 1fr 1fr; gap: 20px; max-width: 1400px; margin: 0 auto; }
+        
+        .editor-panel { background: var(--bg-card); padding: 20px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); }
+        .editor-title { font-size: 1.2rem; margin-bottom: 15px; color: var(--accent-blue); font-weight: bold; }
+        .editor-form { display: flex; flex-direction: column; gap: 10px; }
+        .form-group { display: flex; flex-direction: column; gap: 5px; }
+        .form-group label { font-size: 0.85rem; color: var(--text-muted); }
+        .form-group input { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 10px; border-radius: 8px; font-size: 1rem; }
+        .btn-simulate { background: linear-gradient(90deg, #10b981, #059669); color: white; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: transform 0.2s; }
+        .btn-simulate:hover { transform: translateY(-2px); }
+        .btn-reset { background: rgba(255,255,255,0.1); color: white; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; text-align: center; display: block; margin-top: 10px; }
+
+        .svg-container { background: var(--bg-card); padding: 20px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); text-align: center; box-shadow: inset 0 0 50px rgba(59, 130, 246, 0.1); position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center;}
+        
+        .human-svg { height: 400px; width: auto; filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.3)); }
+        
+        .organ { transition: fill 0.5s ease, filter 0.4s ease; cursor: pointer; }
+        .organ:hover { filter: brightness(1.2); }
+        .organ-alert { filter: drop-shadow(0 0 14px rgba(239, 68, 68, 0.9)) drop-shadow(0 0 6px rgba(239, 68, 68, 0.6)); }
+        
+        .stats-panel { background: var(--bg-card); padding: 20px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); overflow-y: auto; max-height: 80vh; }
+        
+        .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .stat-column { display: flex; flex-direction: column; gap: 15px; }
+        .col-header { text-align: center; font-weight: bold; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 8px; }
+        .col-simulated { background: rgba(16, 185, 129, 0.1); color: var(--success-green); border: 1px solid rgba(16, 185, 129, 0.3); }
+
+        .stat-card { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; border-left: 4px solid var(--accent-blue); }
+        .stat-title { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .stat-val { font-size: 1.1rem; font-weight: bold; }
+        
+        .scan-line { position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: rgba(59, 130, 246, 0.5); box-shadow: 0 0 20px var(--accent-blue); animation: scan 3s linear infinite; }
+        @keyframes scan { 0% { top: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+        
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🧍 Digital Twin Simulation</h1>
+        <p>Virtual Patient Organ Response & Prediction for <strong style="color: white;">{{ patient.name }}</strong></p>
+    </div>
+
+    <div class="twin-container">
+        
+        <!-- LEFT: Scenario Editor -->
+        <div class="editor-panel">
+            <div class="editor-title">What-If Scenario Editor</div>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px;">
+                Change values to see how the AI and Smart Dose engine respond. <br><br>
+                <em style="color: var(--alert-yellow);">Note: These changes are temporary and will not overwrite the patient's medical record.</em>
+            </p>
+            
+            <form method="POST" class="editor-form">
+                {% for key, val in original_params.items() %}
+                <div class="form-group">
+                    <label>{{ key }}</label>
+                    <input type="text" name="sim_{{ key }}" value="{{ simulated_params[key] if simulated_params else val }}">
+                </div>
+                {% endfor %}
+                <button type="submit" class="btn-simulate">Run Simulation ▶</button>
+                <a href="/digital_twin/{{ patient.name }}" class="btn-reset">Reset to Original</a>
+                <a href="/generate_report/{{ patient.name | urlencode }}" class="btn-reset" style="background: var(--accent-blue); color: white; margin-top: 10px; display: block; text-align: center;">📄 Download Patient PDF Report</a>
+                {% if patient.assigned_doctor %}
+                <a href="/doctor_dashboard/{{ patient.assigned_doctor | urlencode }}" class="btn-reset" style="background: rgba(255,255,255,0.05); color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); margin-top: 10px; display: block; text-align: center;">← Back to Dashboard</a>
+                {% else %}
+                <a href="/" class="btn-reset" style="background: rgba(255,255,255,0.05); color: #94a3b8; border: 1px solid rgba(255,255,255,0.1); margin-top: 10px; display: block; text-align: center;">← Back to Dashboard</a>
+                {% endif %}
+            </form>
+        </div>
+
+        {% set active_twin = simulated_twin if simulated_twin else twin %}
+        <!-- MIDDLE: SVG Model -->
+        <div class="svg-container">
+            <div class="scan-line"></div>
+            {% if simulated_twin %}
+            <div style="position: absolute; top: 10px; right: 10px; background: rgba(16, 185, 129, 0.2); color: var(--success-green); padding: 5px 10px; border-radius: 8px; font-size: 0.85rem; font-weight: bold; border: 1px solid var(--success-green);">
+                SIMULATED STATE
+            </div>
+            {% endif %}
+            
+            <svg class="human-svg" viewBox="0 0 200 500" xmlns="http://www.w3.org/2000/svg">
+                <!-- Body Outline -->
+                <path d="M100 20 C120 20, 130 40, 130 60 C130 80, 110 90, 100 90 C90 90, 70 80, 70 60 C70 40, 80 20, 100 20 Z" fill="rgba(255,255,255,0.1)" stroke="rgba(59, 130, 246, 0.5)" stroke-width="2"/>
+                <path d="M70 100 C40 100, 30 130, 30 200 L40 300 L60 300 L60 200 C60 150, 70 120, 100 120 C130 120, 140 150, 140 200 L140 300 L160 300 L170 200 C170 130, 160 100, 130 100 Z" fill="rgba(255,255,255,0.05)" stroke="rgba(59, 130, 246, 0.5)" stroke-width="2"/>
+                <path d="M70 300 L70 480 L90 480 L95 300 L105 300 L110 480 L130 480 L130 300 Z" fill="rgba(255,255,255,0.05)" stroke="rgba(59, 130, 246, 0.5)" stroke-width="2"/>
+                
+                <!-- Heart -->
+                <path class="organ {% if active_twin.highlight_heart %}organ-alert{% endif %}" d="M105 140 C115 130, 125 140, 115 155 L100 170 L90 155 C80 140, 90 130, 100 140 Z" fill="{{ active_twin.heart_color }}" stroke="{% if active_twin.highlight_heart %}#fecaca{% else %}none{% endif %}" stroke-width="{% if active_twin.highlight_heart %}1.5{% else %}0{% endif %}" />
+                <text x="130" y="150" fill="white" font-size="10">Heart</text>
+
+                <!-- Kidneys -->
+                <ellipse class="organ {% if active_twin.highlight_kidney %}organ-alert{% endif %}" cx="85" cy="220" rx="8" ry="14" fill="{{ active_twin.kidney_color }}" transform="rotate(15 85 220)" stroke="{% if active_twin.highlight_kidney %}#fecaca{% else %}none{% endif %}" stroke-width="{% if active_twin.highlight_kidney %}1.5{% else %}0{% endif %}"/>
+                <ellipse class="organ {% if active_twin.highlight_kidney %}organ-alert{% endif %}" cx="115" cy="220" rx="8" ry="14" fill="{{ active_twin.kidney_color }}" transform="rotate(-15 115 220)" stroke="{% if active_twin.highlight_kidney %}#fecaca{% else %}none{% endif %}" stroke-width="{% if active_twin.highlight_kidney %}1.5{% else %}0{% endif %}"/>
+                <text x="135" y="225" fill="white" font-size="10">Kidneys</text>
+
+                <!-- Liver -->
+                <path class="organ {% if active_twin.highlight_liver %}organ-alert{% endif %}" d="M80 180 C100 170, 120 180, 120 200 C100 210, 80 200, 80 180 Z" fill="{{ active_twin.liver_color }}" stroke="{% if active_twin.highlight_liver %}#fecaca{% else %}none{% endif %}" stroke-width="{% if active_twin.highlight_liver %}1.5{% else %}0{% endif %}" />
+                <text x="50" y="190" fill="white" font-size="10">Liver</text>
+            </svg>
+        </div>
+
+        <!-- RIGHT: Stats Comparison -->
+        <div class="stats-panel">
+            <h2 style="margin-bottom: 15px; color: var(--accent-blue);">Comparison</h2>
+            
+            <div class="comparison-grid">
+                <!-- Original Column -->
+                <div class="stat-column">
+                    <div class="col-header">Current State (Real)</div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-title">AI Prediction</div>
+                        <div class="stat-val">{{ twin.diagnosis_line }}</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-title">Smart Dose Recommendation</div>
+                        <div class="stat-val" style="font-size: 0.95rem;">{{ twin.smart_dose_summary }}</div>
+                    </div>
+
+                    <div class="stat-card" style="border-left-color: {{ twin.kidney_color }};">
+                        <div class="stat-title">Kidneys</div>
+                        <div class="stat-val" style="color: {{ twin.kidney_color }}; font-size: 0.95rem; white-space: pre-line;">{{ twin.kidney_status }}</div>
+                    </div>
+
+                    <div class="stat-card" style="border-left-color: {{ twin.heart_color }};">
+                        <div class="stat-title">Heart</div>
+                        <div class="stat-val" style="color: {{ twin.heart_color }}; font-size: 0.95rem; white-space: pre-line;">{{ twin.heart_status }}</div>
+                    </div>
+                </div>
+
+                <!-- Simulated Column -->
+                <div class="stat-column">
+                    <div class="col-header col-simulated">Simulated State</div>
+                    {% if simulated_twin %}
+                    <div class="stat-card" style="border-left-color: var(--success-green);">
+                        <div class="stat-title">AI Prediction</div>
+                        <div class="stat-val">{{ simulated_twin.diagnosis_line }}</div>
+                    </div>
+
+                    <div class="stat-card" style="border-left-color: var(--success-green); {% if simulated_twin.status in ('REVIEW REQUIRED', 'Requires Doctor Review') %}border-left-color: var(--alert-red);{% endif %}">
+                        <div class="stat-title">Smart Dose Recommendation</div>
+                        <div class="stat-val" style="font-size: 0.95rem; {% if simulated_twin.status in ('REVIEW REQUIRED', 'Requires Doctor Review') %}color: var(--alert-red);{% endif %}">{{ simulated_twin.smart_dose_summary }}</div>
+                    </div>
+
+                    <div class="stat-card" style="border-left-color: {{ simulated_twin.kidney_color }};">
+                        <div class="stat-title">Kidneys</div>
+                        <div class="stat-val" style="color: {{ simulated_twin.kidney_color }}; font-size: 0.95rem; white-space: pre-line;">{{ simulated_twin.kidney_status }}</div>
+                    </div>
+
+                    <div class="stat-card" style="border-left-color: {{ simulated_twin.heart_color }};">
+                        <div class="stat-title">Heart</div>
+                        <div class="stat-val" style="color: {{ simulated_twin.heart_color }}; font-size: 0.95rem; white-space: pre-line;">{{ simulated_twin.heart_status }}</div>
+                    </div>
+                    {% else %}
+                    <div style="display: flex; height: 100%; align-items: center; justify-content: center; text-align: center; color: var(--text-muted); font-size: 0.9rem; padding: 20px;">
+                        Run a simulation to see the before/after effects on the patient's digital twin.
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+{
+    "dataset": "diabetes",
+    "rows": 5000,
+    "columns": 20,
+    "target": "Diabetes_Type",
+    "target_classes": [
+        "Gestational Diabetes",
+        "Prediabetes",
+        "Type 1 Diabetes",
+        "Type 2 Diabetes"
+    ],
+    "duplicate_rows": 0,
+    "missing_values": 304,
+    "top_mutual_information_features": [
+        {
+            "feature": "Pregnancy",
+            "mutual_information": 0.3350102476739476
+        },
+        {
+            "feature": "HbA1c",
+            "mutual_information": 0.31477639629784604
+        },
+        {
+            "feature": "Post_Meal_Glucose",
+            "mutual_information": 0.24784124525644646
+        },
+        {
+            "feature": "Random_Glucose",
+            "mutual_information": 0.23584543519005363
+        },
+        {
+            "feature": "Fasting_Glucose",
+            "mutual_information": 0.192608042928351
+        },
+        {
+            "feature": "Insulin",
+            "mutual_information": 0.18183283106995596
+        },
+        {
+            "feature": "BMI",
+            "mutual_information": 0.14596368310916663
+        },
+        {
+            "feature": "Frequent_Urination",
+            "mutual_information": 0.018089269769770766
+        },
+        {
+            "feature": "Water_Intake",
+            "mutual_information": 0.01095617348158262
+        },
+        {
+            "feature": "Diastolic_BP",
+            "mutual_information": 0.005547199821869242
+        }
+    ]
+}

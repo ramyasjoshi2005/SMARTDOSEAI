@@ -1,0 +1,35 @@
+# Optional Render Blueprint. You can also create the service in the dashboard
+# using the Build/Start commands in the project README notes.
+services:
+  - type: web
+    name: smartdoseai
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --timeout 180 --workers 1 --threads 4
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.4"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: FLASK_DEBUG
+        value: "0"
+      - key: RECEPTION_USERNAME
+        sync: false
+      - key: RECEPTION_PASSWORD
+        sync: false
+      - key: DOCTOR_SHARMA_USERNAME
+        sync: false
+      - key: DOCTOR_SHARMA_PASSWORD
+        sync: false
+      - key: DOCTOR_PRIYA_USERNAME
+        sync: false
+      - key: DOCTOR_PRIYA_PASSWORD
+        sync: false
+      - key: DOCTOR_MEHTA_USERNAME
+        sync: false
+      - key: DOCTOR_MEHTA_PASSWORD
+        sync: false
+      - key: DOCTOR_REDDY_USERNAME
+        sync: false
+      - key: DOCTOR_REDDY_PASSWORD
+        sync: false

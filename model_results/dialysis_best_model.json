@@ -1,0 +1,7 @@
+{
+    "dataset": "dialysis",
+    "target": "Dialysis_Risk",
+    "best_model": "RandomForest",
+    "accuracy": 0.708,
+    "f1_score": 0.7017
+}

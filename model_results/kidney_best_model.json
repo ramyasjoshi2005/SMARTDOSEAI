@@ -1,0 +1,7 @@
+{
+    "dataset": "kidney",
+    "target": "Kidney_Disease_Type",
+    "best_model": "XGBoost",
+    "accuracy": 0.538,
+    "f1_score": 0.5349
+}

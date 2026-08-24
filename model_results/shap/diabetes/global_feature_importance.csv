@@ -1,0 +1,23 @@
+feature,readable_feature,mean_abs_shap
+numerical__Pregnancy,Pregnancy,0.12159139648031436
+numerical__HbA1c,HbA1c,0.06673130365385965
+numerical__Insulin,Insulin,0.05788426141000344
+numerical__Fasting_Glucose,Fasting Glucose,0.05666929822537679
+numerical__Post_Meal_Glucose,Post Meal Glucose,0.046041689077226645
+numerical__Random_Glucose,Random Glucose,0.04232803061882848
+numerical__BMI,BMI,0.031770641613670846
+numerical__Triglycerides,Triglycerides,0.004009004079622465
+numerical__Water_Intake,Water Intake,0.0038273803227627887
+numerical__Diastolic_BP,Diastolic BP,0.002280379851222591
+numerical__Frequent_Urination,Frequent Urination,0.0022526969823000063
+numerical__Cholesterol,Cholesterol,0.0021485630168711282
+numerical__Age,Age,0.002060512186171119
+numerical__Systolic_BP,Systolic BP,0.001997346687083382
+numerical__Excessive_Thirst,Excessive Thirst,0.0017291643907658683
+numerical__Blurred_Vision,Blurred Vision,0.0011590724648779512
+categorical__Physical_Activity_Low,Physical Activity Low,0.0006662552613378962
+numerical__Family_History,Family History,0.000613617104420468
+categorical__Physical_Activity_High,Physical Activity High,0.0005813749975791719
+categorical__Gender_Female,Gender Female,0.0005770463308576484
+categorical__Gender_Male,Gender Male,0.0005327517785451265
+categorical__Physical_Activity_Moderate,Physical Activity Moderate,0.0005231619174041747

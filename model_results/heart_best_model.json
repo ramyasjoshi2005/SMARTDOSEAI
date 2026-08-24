@@ -1,0 +1,7 @@
+{
+    "dataset": "heart",
+    "target": "Heart_Disease_Type",
+    "best_model": "RandomForest",
+    "accuracy": 0.589,
+    "f1_score": 0.5769
+}

@@ -1,0 +1,23 @@
+feature,readable_feature,model_input_value,shap_value,absolute_shap,direction
+numerical__Insulin,Insulin,-1.6837232663504051,0.20054236582843674,0.20054236582843674,Supports prediction
+numerical__HbA1c,HbA1c,1.8006159548853715,0.13934056584767646,0.13934056584767646,Supports prediction
+numerical__Fasting_Glucose,Fasting Glucose,1.537418833207109,0.11865004572717369,0.11865004572717369,Supports prediction
+numerical__BMI,BMI,-1.7878349233618045,0.10129157762041632,0.10129157762041632,Supports prediction
+numerical__Post_Meal_Glucose,Post Meal Glucose,0.9924008907876024,0.06662984991960011,0.06662984991960011,Supports prediction
+numerical__Random_Glucose,Random Glucose,0.5338021798973964,0.045454915099946695,0.045454915099946695,Supports prediction
+numerical__Pregnancy,Pregnancy,-0.5846636641131233,0.04056563573348779,0.04056563573348779,Supports prediction
+numerical__Triglycerides,Triglycerides,-0.1616301105512733,0.006917807121209456,0.006917807121209456,Supports prediction
+numerical__Water_Intake,Water Intake,1.2134394687209915,0.005446077008348592,0.005446077008348592,Supports prediction
+numerical__Systolic_BP,Systolic BP,0.7317523241925337,0.003546104509080984,0.003546104509080984,Supports prediction
+numerical__Frequent_Urination,Frequent Urination,1.285503751024945,0.002996274504314183,0.002996274504314183,Supports prediction
+numerical__Diastolic_BP,Diastolic BP,-1.2652228673192965,-0.00269771285906907,0.00269771285906907,Opposes prediction
+numerical__Cholesterol,Cholesterol,0.5975963612716407,0.0020286817881694404,0.0020286817881694404,Supports prediction
+numerical__Age,Age,0.8704161125966234,0.001984671395626344,0.001984671395626344,Supports prediction
+numerical__Family_History,Family History,1.003506146493971,0.001027164254969405,0.001027164254969405,Supports prediction
+categorical__Physical_Activity_Moderate,Physical Activity Moderate,0.0,0.0009624965737021981,0.0009624965737021981,Supports prediction
+categorical__Physical_Activity_Low,Physical Activity Low,0.0,0.000718518129799666,0.000718518129799666,Supports prediction
+numerical__Excessive_Thirst,Excessive Thirst,-0.7987500472623699,-0.0006118207640049887,0.0006118207640049887,Opposes prediction
+categorical__Physical_Activity_High,Physical Activity High,1.0,-0.0005360284518007327,0.0005360284518007327,Opposes prediction
+categorical__Gender_Male,Gender Male,1.0,-0.0005342891362081687,0.0005342891362081687,Opposes prediction
+categorical__Gender_Female,Gender Female,0.0,-0.0004217337749873494,0.0004217337749873494,Opposes prediction
+numerical__Blurred_Vision,Blurred Vision,-0.5326321878151853,0.0001613469954915483,0.0001613469954915483,Supports prediction
