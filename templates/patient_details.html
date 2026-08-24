@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Patient Medical Record</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins;
+}
+
+body{
+
+background:
+linear-gradient(rgba(5,10,25,0.94),
+rgba(5,10,25,0.96)),
+url('https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=2070');
+
+background-size:cover;
+background-position:center;
+
+min-height:100vh;
+
+padding:20px;
+
+color:white;
+}
+
+.container{
+
+background:
+rgba(255,255,255,0.05);
+
+border-radius:25px;
+
+padding:25px;
+}
+
+.top{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:30px;
+}
+
+h1{
+
+font-size:48px;
+
+color:#00d4ff;
+}
+
+.back-btn{
+
+text-decoration:none;
+
+background:
+linear-gradient(90deg,#00d4ff,#007bff);
+
+padding:12px 24px;
+
+border-radius:12px;
+
+color:white;
+
+font-weight:bold;
+}
+
+.section-title{
+
+font-size:38px;
+
+color:#00d4ff;
+
+margin-top:30px;
+
+margin-bottom:25px;
+}
+
+.grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));
+
+gap:20px;
+}
+
+.card{
+
+background:
+rgba(255,255,255,0.05);
+
+padding:18px;
+
+border-radius:18px;
+
+border:
+1px solid rgba(255,255,255,0.08);
+}
+
+.label{
+
+color:#00d4ff;
+
+font-weight:bold;
+
+margin-bottom:8px;
+}
+
+.value{
+
+font-size:18px;
+}
+
+.symptoms{
+
+display:flex;
+
+gap:12px;
+
+flex-wrap:wrap;
+}
+
+.symptom{
+
+padding:10px 18px;
+
+border-radius:30px;
+
+border:2px solid #00d4ff;
+
+color:#00d4ff;
+
+font-weight:bold;
+}
+
+.appointment-box{
+
+background:
+rgba(255,255,255,0.05);
+
+padding:25px;
+
+border-radius:22px;
+
+margin-top:20px;
+}
+
+.report-link{
+
+display:block;
+
+margin-bottom:12px;
+
+color:#00ffff;
+
+font-size:18px;
+
+font-weight:bold;
+
+text-decoration:none;
+}
+
+input[type=file]{
+
+margin-top:15px;
+
+margin-bottom:20px;
+
+color:white;
+}
+
+.upload-btn{
+
+background:
+linear-gradient(90deg,#00d4ff,#007bff);
+
+padding:14px 22px;
+
+border:none;
+
+border-radius:12px;
+
+color:white;
+
+font-size:16px;
+
+font-weight:bold;
+
+cursor:pointer;
+}
+
+.status{
+
+font-size:20px;
+
+font-weight:bold;
+
+color:#00ff99;
+}
+
+.ai-btn{
+
+display:inline-block;
+
+margin-top:25px;
+
+background:
+linear-gradient(90deg,#ff00cc,#3333ff);
+
+padding:16px 28px;
+
+border-radius:14px;
+
+color:white;
+
+font-size:18px;
+
+font-weight:bold;
+
+text-decoration:none;
+}
+
+.complete-btn{
+
+display:inline-block;
+
+margin-top:18px;
+
+background:#00ff99;
+
+padding:14px 24px;
+
+border-radius:14px;
+
+color:black;
+
+font-size:18px;
+
+font-weight:bold;
+
+text-decoration:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="top">
+
+<h1>
+
+📋 Patient Medical Record
+
+</h1>
+
+<a
+
+href="/history"
+
+class="back-btn"
+
+>
+
+← Back to Records
+
+</a>
+
+</div>
+
+<!-- PERSONAL -->
+
+<h2 class="section-title">
+
+🧑 Personal Information
+
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="label">Name</div>
+
+<div class="value">
+{{ patient.name }}
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="label">Age</div>
+
+<div class="value">
+{{ patient.age }}
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="label">Gender</div>
+
+<div class="value">
+{{ patient.gender }}
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="label">Phone</div>
+
+<div class="value">
+{{ patient.phone }}
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="label">Email</div>
+
+<div class="value">
+{{ patient.email }}
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="label">Emergency Contact</div>
+
+<div class="value">
+{{ patient.emergency_contact }}
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="label">Blood Group</div>
+
+<div class="value">
+{{ patient.blood_group }}
+</div>
+
+</div>
+
+</div>
+
+<!-- SYMPTOMS -->
+
+<h2 class="section-title">
+
+🩺 Symptoms
+
+</h2>
+
+<div class="symptoms">
+
+{% for symptom in patient.symptoms.split(",") %}
+
+<div class="symptom">
+
+{{ symptom }}
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<!-- HISTORY -->
+
+<h2 class="section-title">
+
+📖 Medical History
+
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="label">Allergies</div>
+
+<div class="value">
+{{ patient.allergies }}
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="label">Medications</div>
+
+<div class="value">
+{{ patient.medications }}
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="label">Surgeries</div>
+
+<div class="value">
+{{ patient.surgeries }}
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="label">Family History</div>
+
+<div class="value">
+{{ patient.family_history }}
+</div>
+
+</div>
+
+</div>
+
+<!-- APPOINTMENTS -->
+
+<h2 class="section-title">
+
+📅 Appointment History
+
+</h2>
+
+{% for appointment in patient.appointments %}
+
+<div class="appointment-box">
+
+<h2>
+
+Appointment:
+{{ appointment.appointment_date }}
+
+</h2>
+
+<br>
+
+<h3>
+
+Time:
+{{ appointment.appointment_time }}
+
+</h3>
+
+<br>
+
+<div class="status">
+
+Status:
+{{ appointment.status }}
+
+</div>
+
+<br>
+
+<h3>
+
+Uploaded Lab Reports
+
+</h3>
+
+<br>
+
+{% if appointment.lab_reports %}
+
+{% for report in appointment.lab_reports %}
+
+<a
+
+href="/uploads/{{ report | lab_filename }}"
+
+target="_blank"
+
+class="report-link"
+
+>
+
+{{ report | lab_filename }}
+
+{% if report | lab_uploaded_at %}
+
+<span style="color:#94a3b8;font-size:0.9rem;font-weight:normal;"> (uploaded {{ report | lab_uploaded_at }})</span>
+
+{% endif %}
+
+</a>
+
+{% endfor %}
+
+{% else %}
+
+No Reports Uploaded
+
+{% endif %}
+
+<div style="margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.08);">
+
+<h3 style="color:#00d4ff;margin-bottom:10px;font-size:1.1rem;">Upload lab report (reception)</h3>
+
+<p style="color:#94a3b8;font-size:0.95rem;margin-bottom:12px;">Attach the patient's PDF here. It is saved to history and will appear on the doctor's record and in the diagnosis panel.</p>
+
+<form action="/upload_lab_report/{{ patient.name }}/{{ loop.index0 }}" method="POST" enctype="multipart/form-data">
+
+<input type="file" name="lab_report" accept=".pdf,application/pdf" required>
+
+<button type="submit" class="upload-btn">Upload Lab Report</button>
+
+</form>
+
+</div>
+
+{% if appointment.status == "Upcoming" %}
+
+<br>
+
+<a
+
+href="/complete_appointment/{{ patient.name }}/{{ loop.index0 }}"
+
+class="complete-btn"
+
+>
+
+✔ Visited
+
+</a>
+
+{% endif %}
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<!-- BOOK NEW APPOINTMENT -->
+<h2 class="section-title">📅 Book New Appointment</h2>
+<div class="appointment-box" style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; margin-top: 15px;">
+    <form action="/add_appointment/{{ patient.name }}" method="POST">
+        <div style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 8px;">Appointment Date</label>
+            <input type="date" name="appointment_date" required style="padding: 10px; border-radius: 8px; border: none; width: 100%; max-width: 300px;">
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 8px;">Appointment Time</label>
+            <input type="time" name="appointment_time" required style="padding: 10px; border-radius: 8px; border: none; width: 100%; max-width: 300px;">
+        </div>
+        <button type="submit" class="upload-btn">➕ Book Appointment</button>
+    </form>
+</div>
+
+</div>
+
+</body>
+
+</html>

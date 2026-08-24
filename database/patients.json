@@ -1,0 +1,639 @@
+[
+    {
+        "name": "neha kulkarni",
+        "age": "47",
+        "gender": "Male",
+        "phone": "9448440428",
+        "email": "",
+        "emergency_contact": "8353430295",
+        "address": "",
+        "blood_group": "A+",
+        "height": "175",
+        "weight": "72",
+        "bmi": null,
+        "appointment_date": "2026-05-09",
+        "appointment_time": "",
+        "reason_visit": "health checkup",
+        "assigned_doctor": "Dr. Priya",
+        "symptoms": "Excessive Thirst, Frequent Urination, Dizziness, Blurred Vision, iitching of hands and feet",
+        "smoking": "No",
+        "tobacco": "No",
+        "alcohol": "No",
+        "water_intake": "Less than 1L",
+        "activity": "Low",
+        "surgeries": "",
+        "allergies": "",
+        "medications": "",
+        "diseases": "Diabetes",
+        "family_history": "",
+        "notes": "",
+        "diagnosis_status": "Diagnosis Completed",
+        "appointments": [
+            {
+                "appointment_date": "2026-05-09",
+                "appointment_time": "",
+                "doctor_review": "",
+                "next_appointment_date": "",
+                "next_appointment_time": "",
+                "lab_reports": [
+                    {
+                        "filename": "Neha_Kulkarni.pdf",
+                        "uploaded_at": "2026-08-24 21:36"
+                    }
+                ],
+                "status": "Completed",
+                "ai_prediction": "Type 2 Diabetes",
+                "parameters": {
+                    "Fasting_Glucose": 196.0,
+                    "Post_Meal_Glucose": 314.0,
+                    "HbA1c": 9.5,
+                    "Random_Plasma_Glucose": 286.0,
+                    "Urine_Glucose": "+++",
+                    "Urine_Ketones": "Negative",
+                    "Vitamin_B12": 214.0,
+                    "Insulin": 100.0,
+                    "BMI": 30.2
+                },
+                "dialysis_risk": "",
+                "confidence_score": 89.5,
+                "confidence_band": "High",
+                "class_index": 3,
+                "class_probabilities": [
+                    {
+                        "class_index": 3,
+                        "label": "Type 2 Diabetes",
+                        "probability": 89.5
+                    },
+                    {
+                        "class_index": 2,
+                        "label": "Type 1 Diabetes",
+                        "probability": 8.4
+                    },
+                    {
+                        "class_index": 0,
+                        "label": "Gestational Diabetes",
+                        "probability": 1.4
+                    },
+                    {
+                        "class_index": 1,
+                        "label": "Prediabetes",
+                        "probability": 0.6
+                    }
+                ],
+                "severity": "Medium",
+                "organ_risk": "Moderate Risk",
+                "ai_explanation": "The tool read lab values from your uploaded report and noted your symptoms. It thinks the overall picture fits best with: Type 2 Diabetes. That wording was also taken from the diagnosis section of your uploaded document, when that part could be read clearly. Sugar results should always be confirmed with standard blood tests (for example fasting glucose or A1c) and your clinician.",
+                "patient_view": "Your insulin, bmi, hba1c, post-meal glucose, and fasting glucose measurements were among the factors influencing the AI prediction.\n\nSome measurements were not recorded, so the explanation is based only on the available information.",
+                "doctor_view": "Prediction: Type 2 Diabetes (class 3). Model probability: 89.5%. Presentation confidence band: High. Model probability is not the same as medical certainty.",
+                "shap_explanation": {
+                    "top_features": [
+                        {
+                            "feature": "Insulin",
+                            "readable_feature": "Insulin",
+                            "display_value": "100 \u00b5U/mL",
+                            "clinical_value": 100.0,
+                            "strength": "Strong",
+                            "direction": "Supports prediction",
+                            "shap_value": 0.2293,
+                            "absolute_shap": 0.2293
+                        },
+                        {
+                            "feature": "BMI",
+                            "readable_feature": "BMI",
+                            "display_value": "30.2 kg/m\u00b2",
+                            "clinical_value": 30.2,
+                            "strength": "Moderate",
+                            "direction": "Supports prediction",
+                            "shap_value": 0.0582,
+                            "absolute_shap": 0.0582
+                        },
+                        {
+                            "feature": "HbA1c",
+                            "readable_feature": "HbA1c",
+                            "display_value": "9.5%",
+                            "clinical_value": 9.5,
+                            "strength": "Mild",
+                            "direction": "Supports prediction",
+                            "shap_value": 0.056,
+                            "absolute_shap": 0.056
+                        },
+                        {
+                            "feature": "Post_Meal_Glucose",
+                            "readable_feature": "Post-meal Glucose",
+                            "display_value": "314 mg/dL",
+                            "clinical_value": 314.0,
+                            "strength": "Mild",
+                            "direction": "Supports prediction",
+                            "shap_value": 0.0559,
+                            "absolute_shap": 0.0559
+                        },
+                        {
+                            "feature": "Fasting_Glucose",
+                            "readable_feature": "Fasting Glucose",
+                            "display_value": "196 mg/dL",
+                            "clinical_value": 196.0,
+                            "strength": "Mild",
+                            "direction": "Supports prediction",
+                            "shap_value": 0.0553,
+                            "absolute_shap": 0.0553
+                        }
+                    ],
+                    "contributing_features": [
+                        {
+                            "feature": "Insulin",
+                            "readable_feature": "Insulin",
+                            "display_value": "100 \u00b5U/mL",
+                            "clinical_value": 100.0,
+                            "strength": "Strong",
+                            "direction": "Supports prediction",
+                            "shap_value": 0.2293,
+                            "absolute_shap": 0.2293
+                        },
+                        {
+                            "feature": "BMI",
+                            "readable_feature": "BMI",
+                            "display_value": "30.2 kg/m\u00b2",
+                            "clinical_value": 30.2,
+                            "strength": "Moderate",
+                            "direction": "Supports prediction",
+                            "shap_value": 0.0582,
+                            "absolute_shap": 0.0582
+                        },
+                        {
+                            "feature": "HbA1c",
+                            "readable_feature": "HbA1c",
+                            "display_value": "9.5%",
+                            "clinical_value": 9.5,
+                            "strength": "Mild",
+                            "direction": "Supports prediction",
+                            "shap_value": 0.056,
+                            "absolute_shap": 0.056
+                        },
+                        {
+                            "feature": "Post_Meal_Glucose",
+                            "readable_feature": "Post-meal Glucose",
+                            "display_value": "314 mg/dL",
+                            "clinical_value": 314.0,
+                            "strength": "Mild",
+                            "direction": "Supports prediction",
+                            "shap_value": 0.0559,
+                            "absolute_shap": 0.0559
+                        },
+                        {
+                            "feature": "Fasting_Glucose",
+                            "readable_feature": "Fasting Glucose",
+                            "display_value": "196 mg/dL",
+                            "clinical_value": 196.0,
+                            "strength": "Mild",
+                            "direction": "Supports prediction",
+                            "shap_value": 0.0553,
+                            "absolute_shap": 0.0553
+                        },
+                        {
+                            "feature": "Age",
+                            "readable_feature": "Age",
+                            "display_value": "47 years",
+                            "clinical_value": "47",
+                            "strength": "Mild",
+                            "direction": "Supports prediction",
+                            "shap_value": 0.0029,
+                            "absolute_shap": 0.0029
+                        },
+                        {
+                            "feature": "Gender",
+                            "readable_feature": "Gender",
+                            "display_value": "Male",
+                            "clinical_value": "Male",
+                            "strength": "Mild",
+                            "direction": "Opposes prediction",
+                            "shap_value": -0.0017,
+                            "absolute_shap": 0.0017
+                        }
+                    ],
+                    "not_recorded_features": [
+                        {
+                            "feature": "Pregnancy",
+                            "readable_feature": "Pregnancy",
+                            "display_value": "Not recorded",
+                            "clinical_value": null,
+                            "strength": "Moderate",
+                            "direction": "Supports prediction",
+                            "shap_value": 0.1332,
+                            "absolute_shap": 0.1332
+                        },
+                        {
+                            "feature": "Random_Glucose",
+                            "readable_feature": "Random Glucose",
+                            "display_value": "Not recorded",
+                            "clinical_value": null,
+                            "strength": "Mild",
+                            "direction": "Supports prediction",
+                            "shap_value": 0.035,
+                            "absolute_shap": 0.035
+                        },
+                        {
+                            "feature": "Water_Intake",
+                            "readable_feature": "Water Intake",
+                            "display_value": "Not recorded",
+                            "clinical_value": null,
+                            "strength": "Mild",
+                            "direction": "Supports prediction",
+                            "shap_value": 0.0082,
+                            "absolute_shap": 0.0082
+                        },
+                        {
+                            "feature": "Cholesterol",
+                            "readable_feature": "Cholesterol",
+                            "display_value": "Not recorded",
+                            "clinical_value": null,
+                            "strength": "Mild",
+                            "direction": "Supports prediction",
+                            "shap_value": 0.007,
+                            "absolute_shap": 0.007
+                        },
+                        {
+                            "feature": "Diastolic_BP",
+                            "readable_feature": "Diastolic BP",
+                            "display_value": "Not recorded",
+                            "clinical_value": null,
+                            "strength": "Mild",
+                            "direction": "Supports prediction",
+                            "shap_value": 0.0033,
+                            "absolute_shap": 0.0033
+                        },
+                        {
+                            "feature": "Physical_Activity",
+                            "readable_feature": "Physical Activity",
+                            "display_value": "Not recorded",
+                            "clinical_value": null,
+                            "strength": "Mild",
+                            "direction": "Supports prediction",
+                            "shap_value": 0.0026,
+                            "absolute_shap": 0.0026
+                        },
+                        {
+                            "feature": "Excessive_Thirst",
+                            "readable_feature": "Excessive Thirst",
+                            "display_value": "Not recorded",
+                            "clinical_value": null,
+                            "strength": "Mild",
+                            "direction": "Opposes prediction",
+                            "shap_value": -0.0017,
+                            "absolute_shap": 0.0017
+                        },
+                        {
+                            "feature": "Systolic_BP",
+                            "readable_feature": "Systolic BP",
+                            "display_value": "Not recorded",
+                            "clinical_value": null,
+                            "strength": "Mild",
+                            "direction": "Supports prediction",
+                            "shap_value": 0.0013,
+                            "absolute_shap": 0.0013
+                        },
+                        {
+                            "feature": "Triglycerides",
+                            "readable_feature": "Triglycerides",
+                            "display_value": "Not recorded",
+                            "clinical_value": null,
+                            "strength": "Mild",
+                            "direction": "Opposes prediction",
+                            "shap_value": -0.0005,
+                            "absolute_shap": 0.0005
+                        },
+                        {
+                            "feature": "Frequent_Urination",
+                            "readable_feature": "Frequent Urination",
+                            "display_value": "Not recorded",
+                            "clinical_value": null,
+                            "strength": "Mild",
+                            "direction": "Supports prediction",
+                            "shap_value": 0.0003,
+                            "absolute_shap": 0.0003
+                        },
+                        {
+                            "feature": "Family_History",
+                            "readable_feature": "Family History",
+                            "display_value": "Not recorded",
+                            "clinical_value": null,
+                            "strength": "Mild",
+                            "direction": "Supports prediction",
+                            "shap_value": 0.0001,
+                            "absolute_shap": 0.0001
+                        },
+                        {
+                            "feature": "Blurred_Vision",
+                            "readable_feature": "Blurred Vision",
+                            "display_value": "Not recorded",
+                            "clinical_value": null,
+                            "strength": "Mild",
+                            "direction": "Supports prediction",
+                            "shap_value": 0.0001,
+                            "absolute_shap": 0.0001
+                        }
+                    ],
+                    "global_features": [
+                        {
+                            "feature": "Pregnancy",
+                            "readable_feature": "Pregnancy",
+                            "display_value": "Not recorded",
+                            "clinical_value": null,
+                            "strength": "Strong",
+                            "direction": null,
+                            "shap_value": 0.0,
+                            "absolute_shap": 0.0
+                        },
+                        {
+                            "feature": "HbA1c",
+                            "readable_feature": "HbA1c",
+                            "display_value": "Not recorded",
+                            "clinical_value": null,
+                            "strength": "Moderate",
+                            "direction": null,
+                            "shap_value": 0.0,
+                            "absolute_shap": 0.0
+                        },
+                        {
+                            "feature": "Insulin",
+                            "readable_feature": "Insulin",
+                            "display_value": "Not recorded",
+                            "clinical_value": null,
+                            "strength": "Moderate",
+                            "direction": null,
+                            "shap_value": 0.0,
+                            "absolute_shap": 0.0
+                        },
+                        {
+                            "feature": "Fasting_Glucose",
+                            "readable_feature": "Fasting Glucose",
+                            "display_value": "Not recorded",
+                            "clinical_value": null,
+                            "strength": "Moderate",
+                            "direction": null,
+                            "shap_value": 0.0,
+                            "absolute_shap": 0.0
+                        },
+                        {
+                            "feature": "Post_Meal_Glucose",
+                            "readable_feature": "Post-meal Glucose",
+                            "display_value": "Not recorded",
+                            "clinical_value": null,
+                            "strength": "Moderate",
+                            "direction": null,
+                            "shap_value": 0.0,
+                            "absolute_shap": 0.0
+                        },
+                        {
+                            "feature": "Random_Glucose",
+                            "readable_feature": "Random Glucose",
+                            "display_value": "Not recorded",
+                            "clinical_value": null,
+                            "strength": "Moderate",
+                            "direction": null,
+                            "shap_value": 0.0,
+                            "absolute_shap": 0.0
+                        },
+                        {
+                            "feature": "BMI",
+                            "readable_feature": "BMI",
+                            "display_value": "Not recorded",
+                            "clinical_value": null,
+                            "strength": "Moderate",
+                            "direction": null,
+                            "shap_value": 0.0,
+                            "absolute_shap": 0.0
+                        },
+                        {
+                            "feature": "Triglycerides",
+                            "readable_feature": "Triglycerides",
+                            "display_value": "Not recorded",
+                            "clinical_value": null,
+                            "strength": "Mild",
+                            "direction": null,
+                            "shap_value": 0.0,
+                            "absolute_shap": 0.0
+                        }
+                    ],
+                    "probabilities": [
+                        0.014209386305249814,
+                        0.0062346437346437345,
+                        0.08432542328132414,
+                        0.8952305466787823
+                    ],
+                    "predicted_class": 3
+                },
+                "related_models": [
+                    {
+                        "disease_type": "diabetes",
+                        "prediction": "Type 2 Diabetes",
+                        "model_probability": 89.5,
+                        "confidence_band": "High",
+                        "severity": "Medium"
+                    },
+                    {
+                        "disease_type": "kidney",
+                        "prediction": "Diabetic Nephropathy",
+                        "model_probability": 47.3,
+                        "confidence_band": "Low",
+                        "severity": "Low"
+                    },
+                    {
+                        "disease_type": "hypertension",
+                        "prediction": "Primary Hypertension",
+                        "model_probability": 73.6,
+                        "confidence_band": "Moderate",
+                        "severity": "Low"
+                    },
+                    {
+                        "disease_type": "heart",
+                        "prediction": "Coronary Artery Disease",
+                        "model_probability": 61.8,
+                        "confidence_band": "Low",
+                        "severity": "Low"
+                    }
+                ],
+                "disease_type": "diabetes",
+                "lab_analysis_record": {
+                    "report_name": "Neha_Kulkarni.pdf",
+                    "analyzed_at": "2026-08-24 22:34",
+                    "parameters": {
+                        "Fasting_Glucose": 196.0,
+                        "Post_Meal_Glucose": 314.0,
+                        "HbA1c": 9.5,
+                        "Random_Plasma_Glucose": 286.0,
+                        "Urine_Glucose": "+++",
+                        "Urine_Ketones": "Negative",
+                        "Vitamin_B12": 214.0,
+                        "Insulin": 100.0,
+                        "BMI": 30.2
+                    },
+                    "ai_diagnosis": "Type 2 Diabetes",
+                    "disease_module": "diabetes",
+                    "structured_pdf_diagnosis": "Type 2 Diabetes Mellitus with Peripheral Neuropathy"
+                },
+                "smart_dose": {
+                    "medicine": "Metformin 1000mg twice daily",
+                    "dose": "1000mg BID",
+                    "max_dose": "2550mg/day",
+                    "organ_safety": "Moderate Risk",
+                    "kidney_safety": "\u26a0 Unable to fully assess kidney safety. Required kidney-function data were not available. Doctor review required.",
+                    "heart_safety": "Standard monitoring",
+                    "interactions": "None highlighted",
+                    "side_effects": "Vitamin B12 monitoring",
+                    "rejected_explanations": [],
+                    "selection_reason": "Metformin 1000mg twice daily was selected for diabetes (moderate severity) after contraindication, kidney, heart, and interaction checks in this demo engine.",
+                    "safety_flags": [],
+                    "status": "Requires Doctor Review",
+                    "disclaimer": "Educational decision-support demo only. This is not autonomous prescribing and does not replace a licensed clinician."
+                },
+                "doctor_approval_notes": "Approved: Metformin 1000mg twice daily (1000mg BID).",
+                "dose_physician_approved": true,
+                "digital_twin": {
+                    "kidney_color": "#f59e0b",
+                    "heart_color": "#38bdf8",
+                    "liver_color": "#ef4444",
+                    "kidney_status": "Glucose-related kidney risk indicator: Elevated\nNote: This is a model/rule-based simulation, not a kidney-function measurement.",
+                    "heart_status": "Looks steady in this simulation",
+                    "overall_result": "Combines sugar goals with kidney and general safety reminders.",
+                    "kidney_note": "Actual kidney-function laboratory parameters were not recorded.",
+                    "dialysis_prob": "Low",
+                    "heart_attack_risk": "Low",
+                    "labs_summary": "Fasting_Glucose: 196.0; Post_Meal_Glucose: 314.0; HbA1c: 9.5; Random_Plasma_Glucose: 286.0; Urine_Glucose: +++; Urine_Ketones: Negative; Vitamin_B12: 214.0; Insulin: 100.0; BMI: 30.2",
+                    "smart_dose_summary": "Metformin 1000mg twice daily (1000mg BID)",
+                    "diagnosis_line": "Type 2 Diabetes",
+                    "highlight_heart": false,
+                    "highlight_kidney": false,
+                    "highlight_liver": true,
+                    "simulation_disclaimer": "Simulated scenario only. These numbers are what-if model outputs, not a forecast of the patient's real medical outcome."
+                },
+                "report_pdf": "patient_report_neha_kulkarni.pdf"
+            }
+        ],
+        "lab_analysis": [
+            {
+                "report_name": "Neha_Kulkarni.pdf",
+                "parameters": {
+                    "Fasting_Glucose": 196.0,
+                    "Post_Meal_Glucose": 314.0,
+                    "HbA1c": 9.5,
+                    "Random_Plasma_Glucose": 286.0,
+                    "Urine_Glucose": "+++",
+                    "Urine_Ketones": "Negative",
+                    "Vitamin_B12": 214.0
+                },
+                "analyzed_at": "2026-08-24 21:38",
+                "diagnosis_label": "Type 2 Diabetes",
+                "structured_pdf_diagnosis": "Type 2 Diabetes Mellitus with Peripheral Neuropathy"
+            },
+            {
+                "report_name": "Neha_Kulkarni.pdf",
+                "parameters": {
+                    "Fasting_Glucose": 196.0,
+                    "Post_Meal_Glucose": 314.0,
+                    "HbA1c": 9.5,
+                    "Random_Plasma_Glucose": 286.0,
+                    "Urine_Glucose": "+++",
+                    "Urine_Ketones": "Negative",
+                    "Vitamin_B12": 214.0
+                },
+                "analyzed_at": "2026-08-24 22:07",
+                "diagnosis_label": "Type 2 Diabetes",
+                "structured_pdf_diagnosis": "Type 2 Diabetes Mellitus with Peripheral Neuropathy"
+            },
+            {
+                "report_name": "Neha_Kulkarni.pdf",
+                "parameters": {
+                    "Fasting_Glucose": 196.0,
+                    "Post_Meal_Glucose": 314.0,
+                    "HbA1c": 9.5,
+                    "Random_Plasma_Glucose": 286.0,
+                    "Urine_Glucose": "+++",
+                    "Urine_Ketones": "Negative",
+                    "Vitamin_B12": 214.0
+                },
+                "analyzed_at": "2026-08-24 22:10",
+                "diagnosis_label": "Type 2 Diabetes",
+                "structured_pdf_diagnosis": "Type 2 Diabetes Mellitus with Peripheral Neuropathy"
+            },
+            {
+                "report_name": "Neha_Kulkarni.pdf",
+                "parameters": {
+                    "Fasting_Glucose": 196.0,
+                    "Post_Meal_Glucose": 314.0,
+                    "HbA1c": 9.5,
+                    "Random_Plasma_Glucose": 286.0,
+                    "Urine_Glucose": "+++",
+                    "Urine_Ketones": "Negative",
+                    "Vitamin_B12": 214.0
+                },
+                "analyzed_at": "2026-08-24 22:26",
+                "diagnosis_label": "Type 2 Diabetes",
+                "structured_pdf_diagnosis": "Type 2 Diabetes Mellitus with Peripheral Neuropathy"
+            },
+            {
+                "report_name": "Neha_Kulkarni.pdf",
+                "parameters": {
+                    "Fasting_Glucose": 196.0,
+                    "Post_Meal_Glucose": 314.0,
+                    "HbA1c": 9.5,
+                    "Random_Plasma_Glucose": 286.0,
+                    "Urine_Glucose": "+++",
+                    "Urine_Ketones": "Negative",
+                    "Vitamin_B12": 214.0,
+                    "Insulin": 100.0,
+                    "BMI": 30.2
+                },
+                "analyzed_at": "2026-08-24 22:34",
+                "diagnosis_label": "Type 2 Diabetes",
+                "structured_pdf_diagnosis": "Type 2 Diabetes Mellitus with Peripheral Neuropathy"
+            }
+        ],
+        "ai_diagnosis": [
+            {
+                "disease_type": "diabetes",
+                "predicted_disease": "Type 2 Diabetes",
+                "severity": "Low",
+                "risk_percentage": 50.7,
+                "model_probability": 50.7,
+                "confidence_band": "Low",
+                "refinement_note": "The uploaded report also contained a diagnosis line (Type 2 Diabetes Mellitus with Peripheral Neuropathy). The AI label below is still from the model, not a silent copy."
+            },
+            {
+                "disease_type": "diabetes",
+                "predicted_disease": "Type 2 Diabetes",
+                "severity": "Low",
+                "risk_percentage": 50.7,
+                "model_probability": 50.7,
+                "confidence_band": "Low",
+                "refinement_note": "The uploaded report also contained a diagnosis line (Type 2 Diabetes Mellitus with Peripheral Neuropathy). The AI label below is still from the model, not a silent copy."
+            },
+            {
+                "disease_type": "diabetes",
+                "predicted_disease": "Type 2 Diabetes",
+                "severity": "Low",
+                "risk_percentage": 50.7,
+                "model_probability": 50.7,
+                "confidence_band": "Low",
+                "refinement_note": "The uploaded report also contained a diagnosis line (Type 2 Diabetes Mellitus with Peripheral Neuropathy). The AI label below is still from the model, not a silent copy."
+            },
+            {
+                "disease_type": "diabetes",
+                "predicted_disease": "Type 2 Diabetes",
+                "severity": "Low",
+                "risk_percentage": 50.7,
+                "model_probability": 50.7,
+                "confidence_band": "Low",
+                "refinement_note": "The uploaded report also contained a diagnosis line (Type 2 Diabetes Mellitus with Peripheral Neuropathy). The AI label below is still from the model, not a silent copy."
+            },
+            {
+                "disease_type": "diabetes",
+                "predicted_disease": "Type 2 Diabetes",
+                "severity": "Medium",
+                "risk_percentage": 89.5,
+                "model_probability": 89.5,
+                "confidence_band": "High",
+                "refinement_note": "The uploaded report also contained a diagnosis line (Type 2 Diabetes Mellitus with Peripheral Neuropathy). The AI label below is still from the model, not a silent copy."
+            }
+        ]
+    }
+]

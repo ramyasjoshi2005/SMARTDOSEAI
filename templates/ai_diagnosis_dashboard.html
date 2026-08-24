@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Diagnosis Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #020617;
+            --bg-card: #0f172a;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-pink: #ec4899;
+            --alert-red: #ef4444;
+            --alert-yellow: #eab308;
+            --success-green: #10b981;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body { background: var(--bg-dark); color: var(--text-light); padding: 40px; }
+        
+        .top-nav { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-bottom: 28px; }
+        .top-nav a { text-decoration: none; background: rgba(255,255,255,0.08); padding: 11px 20px; border-radius: 10px; color: var(--text-light); font-weight: 600; border: 1px solid rgba(255,255,255,0.1); }
+        .top-nav a.primary { background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); color: white; border: none; }
+
+        .header { text-align: center; margin-bottom: 50px; }
+        .header h1 { font-size: 3rem; background: linear-gradient(90deg, var(--accent-blue), var(--accent-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header p { color: var(--text-muted); font-size: 1.2rem; margin-top: 10px; }
+
+        .patient-section { background: var(--bg-card); border-radius: 24px; padding: 40px; margin-bottom: 40px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
+        
+        .summary-bar { display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.3); padding: 20px 30px; border-radius: 16px; margin-bottom: 30px; border-left: 4px solid var(--accent-purple); flex-wrap: wrap; gap: 16px; }
+        .summary-item { text-align: left; }
+        .summary-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .summary-value { font-size: 1.2rem; font-weight: 600; color: var(--text-light); margin-top: 4px; }
+        
+        .dashboard-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-bottom: 25px; }
+        
+        .card { background: rgba(255,255,255,0.03); border-radius: 16px; padding: 25px; border: 1px solid rgba(255,255,255,0.05); position: relative; overflow: hidden; }
+        .card-title { font-size: 1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+        
+        .prediction-card { grid-column: span 2; background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1)); border: 1px solid rgba(59, 130, 246, 0.3); }
+        .main-prediction { font-size: 2.5rem; font-weight: 800; color: var(--text-light); background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .disease-type { display: inline-block; padding: 5px 12px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 0.9rem; margin-top: 10px; color: var(--text-muted); }
+        
+        .confidence-circle { width: 120px; height: 120px; border-radius: 50%; background: conic-gradient(var(--success-green) var(--pct), rgba(255,255,255,0.1) 0); display: flex; align-items: center; justify-content: center; margin: 0 auto; position: relative; }
+        .confidence-inner { width: 100px; height: 100px; background: var(--bg-card); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 800; color: var(--success-green); }
+
+        .severity-value { font-size: 2rem; font-weight: 800; }
+        .sev-High { color: var(--alert-red); }
+        .sev-Medium { color: var(--alert-yellow); }
+        .sev-Low { color: var(--success-green); }
+
+        .risk-badge { display: inline-block; padding: 8px 16px; border-radius: 8px; font-weight: bold; font-size: 1.1rem; }
+        .risk-High { background: rgba(239, 68, 68, 0.2); color: var(--alert-red); border: 1px solid var(--alert-red); }
+        .risk-Moderate { background: rgba(234, 179, 8, 0.2); color: var(--alert-yellow); border: 1px solid var(--alert-yellow); }
+        .risk-Low { background: rgba(16, 185, 129, 0.2); color: var(--success-green); border: 1px solid var(--success-green); }
+
+        .explanation-card { grid-column: span 3; background: rgba(236, 72, 153, 0.05); border-left: 4px solid var(--accent-pink); }
+        .explanation-text { font-size: 1.05rem; line-height: 1.65; color: var(--text-light); }
+
+        .list-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; font-size: 1.05rem; line-height: 1.45; }
+        .list-item::before { content: "→"; color: var(--accent-blue); font-weight: bold; flex-shrink: 0; }
+
+        .action-row { display: flex; justify-content: flex-end; margin-top: 30px; }
+        .smart-dose-btn { text-decoration: none; background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); padding: 16px 32px; border-radius: 12px; color: white; font-size: 1.2rem; font-weight: bold; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3); border: none; cursor: pointer; }
+        .smart-dose-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(139, 92, 246, 0.5); }
+
+        @media (max-width: 960px) {
+            .dashboard-grid { grid-template-columns: 1fr; }
+            .prediction-card { grid-column: span 1; }
+            .explanation-card { grid-column: span 1; }
+        }
+
+        .record-picker-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px; max-width: 1100px; margin: 0 auto 40px auto; }
+        .record-card { display: block; text-decoration: none; color: inherit; background: var(--bg-card); border-radius: 18px; padding: 26px 24px; border: 1px solid rgba(255,255,255,0.06); transition: transform 0.2s, border-color 0.2s; }
+        .record-card:hover { transform: translateY(-4px); border-color: rgba(59, 130, 246, 0.45); box-shadow: 0 16px 40px rgba(0,0,0,0.5); }
+        .record-card h3 { margin: 0 0 8px 0; font-size: 1.2rem; }
+        .record-card .meta { color: var(--text-muted); font-size: 0.95rem; }
+        .record-card .pred { margin-top: 12px; color: var(--text-light); font-size: 0.98rem; line-height: 1.45; }
+
+        .lab-chip { background: rgba(0,0,0,0.25); padding: 12px 14px; border-radius: 10px; border-left: 3px solid var(--accent-blue); display: flex; flex-direction: column; gap: 6px; min-height: 88px; }
+        .lab-chip-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+        .lab-chip-name { font-size: 0.8rem; color: var(--text-muted); }
+        .lab-chip-val { font-weight: 700; font-size: 1.05rem; }
+        .status-badge { padding: 3px 10px; border-radius: 20px; font-size: 0.68rem; font-weight: 800; white-space: nowrap; }
+        .status-normal { background: rgba(16, 185, 129, 0.2); color: var(--success-green); border: 1px solid var(--success-green); }
+        .status-warn { background: rgba(234, 179, 8, 0.2); color: var(--alert-yellow); border: 1px solid var(--alert-yellow); }
+        .status-danger { background: rgba(250, 204, 21, 0.12); color: #facc15; border: 1px solid rgba(250, 204, 21, 0.55); }
+        .status-risk { background: rgba(239, 68, 68, 0.2); color: var(--alert-red); border: 1px solid var(--alert-red); }
+
+        .top-nav a.secondary { background: rgba(255,255,255,0.06); color: var(--text-light); border: 1px solid rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body>
+
+    <div class="top-nav">
+        <a href="/lab_analysis_dashboard{% if focus_patient %}?patient={{ focus_patient | urlencode }}{% if focus_appt_index is not none %}&appt={{ focus_appt_index }}{% endif %}{% endif %}" class="primary">Lab Analysis Dashboard</a>
+        {% if focus_patient and not record_picker_mode %}
+        <a href="/ai_diagnosis_dashboard" class="secondary">← All AI analysis records</a>
+        {% endif %}
+    </div>
+
+    <div class="header">
+        <h1>🧠 AI Analysis Dashboard</h1>
+        <p>Risk snapshot from your uploaded labs and symptoms—for learning, not a clinic visit.</p>
+    </div>
+
+    {% if record_picker_mode %}
+    <p style="text-align: center; color: var(--text-muted); max-width: 640px; margin: -36px auto 26px auto; line-height: 1.55;">
+        Each card is one past AI run. Tap a card to see that visit’s labs and plain-language summary.
+    </p>
+    <div class="record-picker-grid">
+        {% for rec in ai_records %}
+        <a class="record-card" href="/ai_diagnosis_dashboard?patient={{ rec.patient_name | urlencode }}&appt={{ rec.appt_index }}">
+            <h3>{{ rec.patient_name }}</h3>
+            <div class="meta">Visit date: {{ rec.appointment_date }}</div>
+            <div class="pred">{{ rec.prediction }}</div>
+            <div class="meta" style="margin-top:14px;font-weight:700;color:var(--accent-blue);">Open AI analysis →</div>
+        </a>
+        {% else %}
+        <div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 48px; background: var(--bg-card); border-radius: 16px;">
+            No AI diagnoses on file yet. Upload a lab PDF and run <strong style="color: var(--text-light);">Analyze Using AI</strong> from the doctor diagnosis screen.
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if not record_picker_mode %}
+    {% for patient in patients %}
+    <div class="patient-section">
+        <div class="summary-bar">
+            <div class="summary-item">
+                <div class="summary-label">Patient Name</div>
+                <div class="summary-value">{{ patient.name }}</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">Age</div>
+                <div class="summary-value">{{ patient.age | default('N/A') }}</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">Symptoms</div>
+                <div class="summary-value">{{ patient.symptoms | default('None listed') }}</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">Visit date</div>
+                <div class="summary-value">{{ patient.date | default('N/A') }}</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">Reports Processed</div>
+                <div class="summary-value">{{ patient.reports | length }} Document(s)</div>
+            </div>
+        </div>
+
+        {% if patient.parameters %}
+        <div class="card" style="margin-bottom: 25px;">
+            <div class="card-title">📑 Lab numbers (from your report)</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px;">
+                {% for k, v in patient.parameters|dictsort %}
+                {% set b = k|lab_param_badge(v) %}
+                <div class="lab-chip">
+                    <div class="lab-chip-top">
+                        <div>
+                            <div class="lab-chip-name">{{ k | replace('_',' ') }}</div>
+                            <div class="lab-chip-val">{{ v }}</div>
+                        </div>
+                        <span class="status-badge status-{{ b.tier }}">{{ b.label }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="dashboard-grid">
+            <div class="card prediction-card">
+                <div class="card-title">🔬 Primary AI Diagnosis</div>
+                <div class="main-prediction">{{ patient.prediction }}</div>
+                <div class="disease-type">Care focus: {{ patient.disease_type | title }}</div>
+            </div>
+
+            <div class="card" style="text-align: center;">
+                <div class="card-title" style="justify-content: center;">🎯 AI Confidence Score</div>
+                <div class="confidence-circle" style="--pct: {{ patient.confidence }}%;">
+                    <div class="confidence-inner">{{ patient.confidence }}%</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">⚠️ Severity Level</div>
+                <div class="severity-value sev-{{ patient.severity }}">{{ patient.severity }}</div>
+                <p style="color: var(--text-muted); margin-top: 10px; font-size: 0.9rem;">
+                    High / Medium / Low is only a rough demo score from this app—not a hospital triage grade.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-title">🫀 Organ Risk Analysis</div>
+                <div style="margin-bottom: 15px;">
+                    <span style="display: block; margin-bottom: 5px; color: var(--text-muted);">Organ this track watches: {{ patient.disease_type | title }}</span>
+                    <div class="risk-badge risk-{% if 'High' in patient.organ_risk %}High{% elif 'Low' in patient.organ_risk %}Low{% else %}Moderate{% endif %}">
+                        {{ patient.organ_risk }}
+                    </div>
+                </div>
+                {% if patient.dialysis %}
+                <div>
+                    <span style="display: block; margin-bottom: 5px; color: var(--text-muted);">Dialysis Risk</span>
+                    <div class="risk-badge risk-High">{{ patient.dialysis }}</div>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="card">
+                <div class="card-title">🔮 What could happen if untreated? (education only)</div>
+                {% if patient.disease_type == 'heart' and ('PSVT' in patient.prediction or 'Supraventricular' in patient.prediction) %}
+                <div class="list-item">Episodes that feel frightening: racing heart, lightheadedness, or low blood pressure while the rhythm is fast.</div>
+                <div class="list-item">Rarely, months of very frequent fast spells may tire the heart muscle—needs cardiology guidance.</div>
+                {% elif patient.disease_type == 'heart' and patient.prediction == 'Arrhythmia' %}
+                <div class="list-item">Passing out or near-fainting if the heart beats too quickly for too long.</div>
+                <div class="list-item">A strained heart muscle if fast rhythms go unchecked for years.</div>
+                {% elif patient.disease_type == 'heart' and patient.prediction == 'Coronary Artery Disease' %}
+                <div class="list-item">Ongoing artery blockage can worsen chest pain or cause a larger heart attack without treatment.</div>
+                <div class="list-item">Reduced pump strength (“heart failure”) if blood flow stays poor.</div>
+                {% elif patient.disease_type == 'heart' and patient.prediction == 'Heart Failure' %}
+                <div class="list-item">Fluid buildup (swollen legs or lungs) because the pump can’t catch up.</div>
+                <div class="list-item">Irregular heartbeats when salts like potassium drift out of range.</div>
+                {% elif patient.disease_type == 'kidney' %}
+                <div class="list-item">Imbalance of salts in the blood.</div>
+                <div class="list-item">Anemia when kidney hormone signals drop.</div>
+                <div class="list-item" style="color: var(--alert-red);">Long-term dialysis if kidney filters fail—your nephrology team plots that path.</div>
+                {% else %}
+                <div class="list-item">Eye, nerve, and kidney strain from sugar that stays too high.</div>
+                <div class="list-item">Heart attack or stroke risks rise when sugars and BP stay uncontrolled.</div>
+                {% endif %}
+            </div>
+
+            <div class="card explanation-card">
+                <div class="card-title">🤖 AI Reasoning</div>
+                
+                <div style="display: flex; gap: 30px; margin-bottom: 20px;">
+                    <div style="flex: 1;">
+                        <h4 style="color: var(--text-muted); margin-bottom: 10px; font-size: 0.95rem; text-transform: uppercase;">Technical / Doctor View</h4>
+                        {% if patient.shap_explanation %}
+                        <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; gap: 15px;">
+                            <div>
+                                <strong style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; display: block; margin-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 4px;">Contributing Factors</strong>
+                                {% if patient.shap_explanation.contributing_features %}
+                                <ul style="margin: 0; padding-left: 20px; font-size: 0.95rem; line-height: 1.6; list-style-type: disc;">
+                                    {% for feat in patient.shap_explanation.contributing_features %}
+                                    <li style="margin-bottom: 4px;">
+                                        {{ feat.readable_feature }} = {{ feat.display_value }} — 
+                                        {% if feat.absolute_shap > 0.5 %}
+                                        <span style="color: var(--alert-red); font-weight: bold;">Strong</span>
+                                        {% elif feat.absolute_shap > 0.2 %}
+                                        <span style="color: var(--alert-yellow);">Moderate</span>
+                                        {% else %}
+                                        <span style="color: var(--success-green);">Mild</span>
+                                        {% endif %}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                                {% else %}
+                                <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">No contributing factors available.</p>
+                                {% endif %}
+                            </div>
+                            
+                            <div>
+                                <strong style="color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; display: block; margin-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 4px;">Not Recorded</strong>
+                                {% if patient.shap_explanation.not_recorded_features %}
+                                <ul style="margin: 0; padding-left: 20px; font-size: 0.95rem; line-height: 1.6; color: var(--text-muted); list-style-type: disc;">
+                                    {% for feat in patient.shap_explanation.not_recorded_features %}
+                                    <li style="margin-bottom: 4px;">{{ feat.readable_feature }}</li>
+                                    {% endfor %}
+                                </ul>
+                                {% else %}
+                                <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">All parameters were recorded.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% else %}
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Detailed SHAP feature analysis unavailable.</p>
+                        {% endif %}
+                    </div>
+                    
+                    <div style="flex: 1;">
+                        <h4 style="color: var(--text-muted); margin-bottom: 10px; font-size: 0.95rem; text-transform: uppercase;">Patient View</h4>
+                        <div class="explanation-text" style="background: rgba(255,255,255,0.03); padding: 15px; border-radius: 12px; height: 100%; white-space: pre-line;">{{ patient.explanation }}</div>
+                    </div>
+                </div>
+
+                <div class="explanation-text">
+                    <strong>Please remember:</strong> this screen is a teaching tool. It does <em>not</em> replace your doctor, nurse, or emergency care.
+                </div>
+            </div>
+
+            <div class="card" style="grid-column: span 3;">
+                <div class="card-title">💊 Recommended Next Steps (Checklist)</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px;">
+                    {% for step in patient.next_steps %}
+                    <div class="list-item">{{ step }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="action-row">
+            <a href="/smart_dose/{{ patient.name | urlencode }}" class="smart-dose-btn">Proceed to Smart Dose 💊 →</a>
+        </div>
+    </div>
+    {% else %}
+    <div style="text-align: center; padding: 50px; background: var(--bg-card); border-radius: 16px;">
+        <h2 style="color: var(--text-muted);">No AI Diagnoses Found</h2>
+        <p style="margin-top: 10px;">Run Analyze Using AI from the diagnosis panel after reception uploads a lab PDF.</p>
+        <p style="margin-top: 18px;"><a href="/lab_analysis_dashboard" style="color: var(--accent-blue); font-weight: 700;">Open Lab Analysis records</a></p>
+        <p style="margin-top: 10px;"><a href="/ai_diagnosis_dashboard" style="color: var(--accent-blue); font-weight: 700;">All AI analysis records</a></p>
+    </div>
+    {% endfor %}
+    {% endif %}
+</body>
+</html>

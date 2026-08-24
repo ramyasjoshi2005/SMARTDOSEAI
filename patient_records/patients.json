@@ -1,0 +1,22 @@
+[
+    {
+        "name": "rahul sharma",
+
+        "appointments": [
+
+            {
+
+                "appointment_date": "2026-05-10",
+
+                "appointment_time": "20:06",
+
+                "lab_reports": [],
+
+                "status": "Completed"
+
+            }
+
+        ]
+
+    }
+]

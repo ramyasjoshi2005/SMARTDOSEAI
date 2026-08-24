@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Doctor Patient Records</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Poppins;
+        }
+
+        body{
+
+            min-height:100vh;
+
+            background:
+            linear-gradient(rgba(4,15,40,0.92),
+            rgba(4,15,40,0.92)),
+            url("https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=2070");
+
+            background-size:cover;
+            background-position:center;
+
+            color:white;
+
+            padding:22px;
+        }
+
+        .top-bar{
+
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+
+            margin-bottom:25px;
+        }
+
+        h1{
+
+            color:#00d4ff;
+            font-size:55px;
+        }
+
+        .back-btn{
+
+            text-decoration:none;
+
+            background:
+            linear-gradient(90deg,#00d4ff,#007bff);
+
+            padding:14px 24px;
+
+            border-radius:14px;
+
+            color:white;
+            font-weight:600;
+        }
+
+        .doctor{
+
+            margin-top:10px;
+            font-size:20px;
+            color:#ddd;
+            margin-bottom:35px;
+        }
+
+        table{
+
+            width:100%;
+
+            border-collapse:collapse;
+
+            overflow:hidden;
+
+            border-radius:22px;
+
+            background:
+            rgba(255,255,255,0.08);
+
+            backdrop-filter:blur(12px);
+        }
+
+        th{
+
+            background:#16c5e6;
+
+            padding:22px;
+
+            text-align:left;
+
+            color:#07132b;
+
+            font-size:18px;
+        }
+
+        td{
+
+            padding:22px;
+
+            border-top:
+            1px solid rgba(255,255,255,0.08);
+
+            font-size:17px;
+        }
+
+        tr:hover{
+
+            background:
+            rgba(255,255,255,0.05);
+        }
+
+        .status{
+
+            color:#00ffbf;
+            font-weight:700;
+        }
+
+        .open-btn{
+
+            text-decoration:none;
+
+            background:
+            linear-gradient(90deg,#00d4ff,#007bff);
+
+            padding:12px 18px;
+
+            border-radius:12px;
+
+            color:white;
+
+            font-weight:600;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="top-bar">
+
+    <div>
+
+        <h1>
+            👨‍⚕️ Doctor Patient Records
+        </h1>
+
+        <div class="doctor">
+
+            Logged in as:
+            {{ doctor_name }}
+
+        </div>
+
+    </div>
+
+    <a href="/doctor_dashboard/{{ doctor_name }}"
+    class="back-btn">
+
+        ← Back to Dashboard
+
+    </a>
+
+</div>
+
+<table>
+
+    <tr>
+
+        <th>Patient Name</th>
+
+        <th>Appointment Date</th>
+
+        <th>Appointment Time</th>
+
+        <th>Reason of Visit</th>
+
+        <th>Status</th>
+
+        <th>Record</th>
+
+    </tr>
+
+    {% for patient in patients %}
+
+    <tr>
+
+        <td>
+            {{ patient.name }}
+        </td>
+
+        <td>
+            {{ patient.appointment_date }}
+        </td>
+
+        <td>
+            {{ patient.appointment_time }}
+        </td>
+
+        <td>
+            {{ patient.reason_visit }}
+        </td>
+
+        <td class="status">
+            {{ patient.diagnosis_status }}
+        </td>
+
+        <td>
+
+            <a href="/doctor_patient/{{ patient.name }}"
+            class="open-btn">
+
+                Open Record →
+
+            </a>
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+</body>
+
+</html>
