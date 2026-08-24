@@ -1,0 +1,18 @@
+# Runtime packages used by the Flask app (not train_models.py).
+# Versions match a working local stack (Python 3.12 + sklearn 1.8) so pickled models load.
+Flask==3.1.2
+gunicorn==23.0.0
+fpdf2==2.8.7
+numpy>=2.0,<3
+pandas==2.3.3
+scikit-learn==1.8.0
+joblib==1.5.3
+xgboost==3.2.0
+lightgbm==4.6.0
+shap==0.52.0
+matplotlib==3.10.7
+pdfplumber==0.11.9
+pytesseract==0.3.13
+opencv-python-headless>=4.8,<5
+Pillow>=10.0
+Werkzeug==3.1.3
